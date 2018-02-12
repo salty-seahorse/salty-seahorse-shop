@@ -1,0 +1,52 @@
+<:Head>
+    <!-- COMMON TAGS -->
+    <meta charset='utf-8'>
+    <title>{{ title }}</title>
+    <!-- Search Engine -->
+    <meta name='description' content={{ description }}>
+    <meta name='image' content={{ image }}>
+    <!-- Schema.org for Google -->
+    <meta itemprop='name' content={{ title }}>
+    <meta itemprop='description' content={{ description }}>
+    <meta itemprop='image' content={{ image }}>
+    <!-- Twitter -->
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:title' content={{ title }}>
+    <meta name='twitter:description' content={{ description }}>
+    <meta name='twitter:site' content='@salty_seahorse_'>
+    <meta name='twitter:creator' content='@salty_seahorse_'>
+    <meta name='twitter:image:src' content={{ image }}>
+    <!-- Twitter - Product (e-commerce) -->
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name='og:title' content={{ title }}>
+    <meta name='og:description' content={{ description }}>
+    <meta name='og:image' content={{ image }}>
+    <meta name='og:url' content={{ url }}>
+    <meta name='og:site_name' content={{ title }}>
+    <meta name='fb:admins' content='thesaltyseahorse'>
+    <meta name='og:type' content='product'>
+    <!-- Open Graph - Product (e-commerce) -->
+    {{ #if availability }}
+    <meta name='product:availability' content={{ availability }}>
+    {{ /if }}
+    {{ #if price }}
+    <meta name='product:price:currency' content='USD'>
+    <meta name='product:price:amount' content={{ price }}>
+    {{ /if }}
+    <meta name='product:brand' content={{ title }}>
+</:Head>
+
+<script>
+    export default {
+        data() {
+            return {
+                title: 'Salty Seahorse Shop',
+                description: 'Coastal Candles with a Cause',
+                image: 'https://www.saltyseahorseshop.com/tiki-bar-candle.jpg',
+                url: 'https://www.saltyseahorseshop.com',
+                availability: undefined, // 'instock', 'oos', 'pending', 'preorder', 'out of stock', 'discontinued'
+                price: undefined // without any currency sign, e.g., '6.50'
+            };
+        }
+    }
+</script>

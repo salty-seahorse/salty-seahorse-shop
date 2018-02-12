@@ -1,0 +1,101 @@
+<:Head>
+    <!-- COMMON TAGS -->
+    <meta charset='utf-8'>
+    <title>{{ item.title }}</title>
+    <!-- Search Engine -->
+    <meta name='description' content={{ item.scent }}>
+    <meta name='image' content={{ `https://www.saltyseahorseshop.com/${item.image}` }}>
+    <!-- Schema.org for Google -->
+    <meta itemprop='name' content={{ item.title }}>
+    <meta itemprop='description' content={{ item.scent }}>
+    <meta itemprop='image' content={{ `https://www.saltyseahorseshop.com/${item.image}` }}>
+    <!-- Twitter -->
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:title' content={{ item.title }}>
+    <meta name='twitter:description' content={{ item.scent }}>
+    <meta name='twitter:site' content='@salty_seahorse_'>
+    <meta name='twitter:creator' content='@salty_seahorse_'>
+    <meta name='twitter:image:src' content={{ `https://www.saltyseahorseshop.com/${item.image}` }}>
+    <!-- Twitter - Product (e-commerce) -->
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name='og:title' content={{ item.title }}>
+    <meta name='og:description' content={{ item.scent }}>
+    <meta name='og:image' content={{ `https://www.saltyseahorseshop.com/${item.image}` }}>
+    <meta name='og:url' content={{ `https://www.saltyseahorseshop.com/shop/${item.slug}` }}>
+    <meta name='og:site_name' content={{ item.title }}>
+    <meta name='fb:admins' content='thesaltyseahorse'>
+    <meta name='og:type' content='product'>
+    <!-- Open Graph - Product (e-commerce) -->
+    <meta name='product:availability' content='preorder'>
+    <meta name='product:price:currency' content='USD'>
+    <meta name='product:price:amount' content={{ item.price }}>
+    <meta name='product:brand' content='Salty Seahorse Shop'>
+</:Head>
+
+<Layout>
+    <div slot='navigation'>
+        <Nav />
+    </div>
+
+    <div slot='content' class='mh3 pv4'>
+        <div class='f5 fw1 mb4'>
+            <a class='link' href='/shop'>Shop</a>
+            <span class='mh2'>></span>
+            <span>{{ item.title }}</span>
+        </div>
+        <div class='cf'>
+            <div class='fl dn db-ns w-third ph2'>
+                <img class='db center mw5 w-100' src={{ item.image }} alt={{ item.title }} />
+            </div>
+            <div class='fl w-100 w-two-thirds-ns pl4-ns pl6-l'>
+                <div class='f1 tc tl-ns'>{{ item.title }}</div>
+
+                <img class='mt4 mw4 db center dn-ns' src={{ item.image }} alt={{ item.title }} />
+                <div class='f3 f2-ns mt3 gray'>${{ item.price }}</div>
+                <div class='f4 f3-ns b mt2 mt3-ns'>{{ item.scent }}</div>
+
+                <div class='f5 f4-ns fw1 mt4 lh-copy'>
+                    <span>{{ item.size }}</span>
+                    <br>
+                    <br>
+                    <span>Natural Soy Wax</span>
+                    <br>
+                    <span>Cotton Wicks</span>
+                    <br>
+                    <span>Repurposed & Reusable Glass</span>
+                    <br>
+                    <span>Made in Orange Beach, AL</span>
+                </div>
+
+                <button
+                    class='snipcart-add-item db center dib-ns open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
+                    data-item-name={{ item.title }}
+                    data-item-price={{ item.price }}
+                    data-item-image={{ item.image }}
+                    data-item-id={{ item.slug }}
+                    data-item-url={{ `/shop/${item.slug}` }}
+                    data-item-weight={{ item.shippingWeight }}
+                >ADD TO CART</button>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    import Layout from '../_components/Layout.html';
+    import Nav from '../_components/Nav.html';
+
+    export default {
+        components: {
+            Layout,
+            Nav
+        },
+        preload({ params, query }) {
+            const { slug } = params;
+
+            return fetch(`/api/shop`).then(r => r.json()).then(items => {
+                return { item: items.find(i => i.slug === slug) };
+            });
+        }
+    }
+</script>

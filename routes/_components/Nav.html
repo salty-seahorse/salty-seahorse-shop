@@ -1,0 +1,63 @@
+<nav class='ph3 f4 {{ color }}'>
+	<ul class='list ma0 pa0 cf'>
+		<li class={{ li }}>
+			<a class='{{ link }} {{page === "home"  ? selected : ""}}' href='/'>home</a>
+		</li>
+		<li class={{ li }}>
+			<a class='{{ link }} {{page === "about"  ? selected : ""}}' href='/about'>about</a>
+		</li>
+		<li class={{ li }}>
+			<a class='{{ link }} {{page === "shop" ? selected : ""}}' href='/shop'>shop</a>
+		</li>
+		<!--
+		<li class='{{ li }}'>
+			<a class='{{ link }} {{page === "wheretobuy" ? selected : ""}}' href='/wheretobuy'>where to buy</a>
+		</li>
+		-->
+
+		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
+		     the blog data when we hover over the link or tap it on a touchscreen
+		<li class='{{ li }}'>
+			<a rel=prefetch class='{{ link }} {{page === "blog"  ? selected : ""}}' href='/blog'>blog</a>
+		</li>
+		-->
+	</ul>
+</nav>
+
+<style>
+	.selected::after {
+		position: absolute;
+		content: '';
+		width: calc(100% - 1em);
+		height: 2px;
+		background-color: #333;
+		display: block;
+		bottom: -1px;
+	}
+
+	.white .selected::after {
+		background-color: white;
+	}
+</style>
+
+<script>
+	const selected = 'selected relative dib';
+	const li = 'db fl';
+	const link = 'b link overflow-hidden pv3 ph2 db';
+
+	export default {
+		data () {
+			return {
+				light: false
+			}
+		},
+		computed: {
+			color: (light) => light ? 'white' : 'dark-gray'
+		},
+		helpers: {
+			li,
+			link,
+			selected
+		}
+	}
+</script>

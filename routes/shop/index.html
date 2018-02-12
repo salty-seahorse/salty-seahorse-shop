@@ -1,0 +1,79 @@
+<:Head>
+<!-- COMMON TAGS -->
+    <meta charset='utf-8'>
+    <title>Salty Seahorse Shop</title>
+    <!-- Search Engine -->
+    <meta name='description' content='Coastal Candles with a Cause'>
+    <meta name='image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <!-- Schema.org for Google -->
+    <meta itemprop='name' content='Salty Seahorse Shop'>
+    <meta itemprop='description' content='Coastal Candles with a Cause'>
+    <meta itemprop='image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <!-- Twitter -->
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:title' content='Salty Seahorse Shop'>
+    <meta name='twitter:description' content='Coastal Candles with a Cause'>
+    <meta name='twitter:site' content='@salty_seahorse_'>
+    <meta name='twitter:creator' content='@salty_seahorse_'>
+    <meta name='twitter:image:src' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <!-- Twitter - Product (e-commerce) -->
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name='og:title' content='Salty Seahorse Shop'>
+    <meta name='og:description' content='Coastal Candles with a Cause'>
+    <meta name='og:image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <meta name='og:url' content='https://www.saltyseahorseshop.com/shop'>
+    <meta name='og:site_name' content='Salty Seahorse Shop'>
+    <meta name='fb:admins' content='thesaltyseahorse'>
+    <meta name='og:type' content='product'>
+    <!-- Open Graph - Product (e-commerce) -->
+    <meta name='product:availability' content='preorder'>
+    <meta name='product:brand' content='Salty Seahorse Shop'>
+</:Head>
+
+<Layout>
+    <div slot='navigation'>
+        <Nav page='shop' />
+    </div>
+
+    <div slot='content' class='db center'>
+        <div class={{ `flex flex-column items-center justify-center ${section}` }}>
+            <h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy'>
+                Variety is the Spice of Life
+            </h1>
+            <h1 class='f5 f4-ns f3-l tc lh-copy normal w-100 w-two-thirds-l ph3 ph4-ns ph5-l mt0'>
+                Because our candles are made from glass bottles repurposed from local businesses and individuals, the exact color and finish of each candle is unique. Our glass ranges in color from green to brown to clear.
+            </h1>
+        </div>
+
+        <div class='cf mw8 db center mt4'>
+            {{ #each items as item }}
+            <a class='link fl w-100 w-50-m w-third-ns pa3' href={{ `/shop/${item.slug}` }}>
+                <img class='mw-50 h5 db center' src={{item.image}} alt={{item.title}} />
+                <div class='tc lh-copy'>
+                    <span class='f4 f3-m b'>{{ item.title }}</span>
+                    <br >
+                    <span class='f5 f4-m'>${{ item.price }}</span>
+                </div>
+            </a> 
+            {{ /each }}
+        </div>
+    </div>
+</Layout>
+
+<script>
+    import Layout from '../_components/Layout.html';
+    import Nav from '../_components/Nav.html';
+
+    export default {
+        components: {
+            Layout,
+            Nav
+        },
+
+        preload({ params, query }) {
+            return fetch('/api/shop').then(r => r.json()).then(items => {
+                return { items };
+            });
+        }
+    }
+</script>

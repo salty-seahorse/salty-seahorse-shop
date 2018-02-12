@@ -1,0 +1,109 @@
+body {
+	margin: 0;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 16px;
+}
+
+main {
+	position: relative;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: inherit;
+}
+
+svg {
+	fill: white;
+}
+
+.min-vh-third {
+	min-height: 33.3vh;
+}
+
+.min-vh-50 {
+	min-height: 50vh;
+}
+
+.min-vh-two-thirds {
+	min-height: 33.3vh;
+}
+
+.center-h {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.center-v {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.bg-content-box {
+	background-origin: content-box;
+}
+
+.open-sans-condensed {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.open-sans {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.salty-teal {
+	color: #50aab8;
+}
+
+.bg-salty-teal {
+	background-color: #50aab8;
+}
+
+.b--salty-teal {
+	border-color: #50aab8;
+}
+
+.hover-salty-teal:focus,.hover-salty-teal:hover {
+	color: #50aab8;
+}
+
+.hover-bg-salty-teal:focus,.hover-bg-salty-teal:hover {
+	background-color: #50aab8;
+}
+
+.hover-b--salty-teal:focus,.hover-b--salty-teal:hover {
+	border-color: #50aab8;
+}
+
+.fade-in, .fade-out {
+	animation-fill-mode: forwards;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+}
+
+.fade-in {
+	animation-name: fadeIn;
+	opacity: 0;
+}
+
+.fade-out {
+	animation-name: fadeOut;
+	opacity: 1;
+}
+
+@keyframes fadeIn {
+	0% { opacity: 0 }
+	100% { opacity: 1 }
+}
+
+@keyframes fadeOut {
+	0% { opacity: 1 }
+	100% { opacity: 0 }
+}

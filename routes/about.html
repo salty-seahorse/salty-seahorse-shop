@@ -1,0 +1,124 @@
+<:Head>
+	<!-- COMMON TAGS -->
+    <meta charset='utf-8'>
+    <title>About | Salty Seahorse Shop</title>
+    <!-- Search Engine -->
+    <meta name='description' content='Coastal Candles with a Cause'>
+    <meta name='image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <!-- Schema.org for Google -->
+    <meta itemprop='name' content='About | Salty Seahorse Shop'>
+    <meta itemprop='description' content='Coastal Candles with a Cause'>
+    <meta itemprop='image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <!-- Twitter -->
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:title' content='About | Salty Seahorse Shop'>
+    <meta name='twitter:description' content='Coastal Candles with a Cause'>
+    <meta name='twitter:site' content='@salty_seahorse_'>
+    <meta name='twitter:creator' content='@salty_seahorse_'>
+    <meta name='twitter:image:src' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <!-- Twitter - Product (e-commerce) -->
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name='og:title' content='About | Salty Seahorse Shop'>
+    <meta name='og:description' content='Coastal Candles with a Cause'>
+    <meta name='og:image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
+    <meta name='og:url' content='https://www.saltyseahorseshop.com/about'>
+    <meta name='og:site_name' content='About | Salty Seahorse Shop'>
+    <meta name='fb:admins' content='thesaltyseahorse'>
+	<meta name='og:type' content='product'>
+	
+	<link rel='preload' href='beach.jpg' as='image'>
+</:Head>
+
+<:Window bind:innerWidth='windowWidth' bind:innerHeight='windowHeight' />
+
+<Layout page='about'>
+	<div slot='navigation' class='cover bg-bottom' style='height: {{ heroHeight }}'>
+		<Nav page='about' light />
+	</div>
+
+	<div slot='content'>
+		<div class={{ `flex flex-column flex-row-l items-center justify-center ${section}` }}>
+			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy'>
+				<span>Who We Are</span>
+			</h1>
+			<h1 class='f4 f3-l tc tl-l lh-copy normal w-100 w-two-thirds-l ph3 ph4-ns ph5-l mt2 mt0-l'>
+				<p>We hand-craft locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL.</p>
+				<p>The Salty Seahorse started as a happy hour conversation at our local tiki bar about exactly those ideas, but it has become much more.</p>
+				<p>We love where we live and are excited to be able to use what we do to give back to our community.</p>
+			</h1>
+		</div>
+
+		<div class={{ `flex flex-column flex-row-l items-center justify-center ${section}` }}>
+			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy dn-l'>
+				<span>Candles for a Cause</span>
+			</h1>
+			<h1 class='f4 f3-l tc tl-l lh-copy normal w-100 w-two-thirds-l ph3 ph4-ns ph5-l mt2 mt0-l'>
+				<p>When you buy from The Salty Seahorse, you get more than a candle. You get to be part of our mission to preserve the Alabama Gulf Coast and protect local marine and wildlife.</p>
+				<p>We donate a portion of proceeds from every candle to support local beach clean-up and marine/wildlife conservation efforts.</p>
+			</h1>
+			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy dn db-l'>
+				<span>Candles for a Cause</span>
+			</h1>
+		</div>
+
+		<div class={{ `flex flex-column flex-row-l items-center justify-center ${section}` }}>
+			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy'>
+				<span>Recycled Bottles</span>
+			</h1>
+			<h1 class='f4 f3-l tc tl-l lh-copy normal w-100 w-two-thirds-l ph3 ph4-ns ph5-l mt2 mt0-l'>
+				<p>All of our bottles are locally sourced from businesses and individuals in the Orange Beach/Gulf Shores area.</p>
+				<p>We’re proud to give these bottles a second life as candles and hope you’ll continue to re-use them after your candle is gone (e.g. start an herb garden, use to store pens and pencils, etc.).</p>
+			</h1>
+		</div>
+
+		<div class={{ `flex flex-column flex-row-l items-center justify-center ${section}` }}>
+			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy dn-l'>
+				<span>Small Batch</span>
+				<br >
+				<span>Hand-Made</span>
+			</h1>
+			<h1 class='f4 f3-l tc tl-l lh-copy normal w-100 w-two-thirds-l ph3 ph4-ns ph5-l mt2 mt0-l'>
+				We’re a small, local business trying to do our part within our community. We hand-pour all of our candles in small batches and treat every candle with care.
+			</h1>
+			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy dn db-l'>
+				<span>Small Batch</span>
+				<br >
+				<span>Hand-Made</span>
+			</h1>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	div[slot='navigation'] {
+		background-image: url('/beach.jpg');
+	}
+</style>
+
+<script>
+	import Layout from './_components/Layout.html';
+	import Nav from './_components/Nav.html';
+
+	const section = 'pv3 pv4-m pv5-l mh3 mh4-m mh5-l bb b--gray';
+
+	export default {
+		components: {
+			Layout,
+			Nav
+		},
+		computed: {
+			heroHeight: (windowHeight, windowWidth) => {
+				let height = 3 / 4 * windowWidth;
+
+				if (height > windowHeight * 0.6) {
+					height = windowHeight * 0.6;
+				}
+
+				return `${height}px`;
+			}
+		},
+		helpers: {
+			section
+		}
+	};
+</script>

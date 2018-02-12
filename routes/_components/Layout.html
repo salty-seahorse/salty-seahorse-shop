@@ -1,0 +1,21 @@
+<Header />
+
+<slot name='navigation'></slot>
+
+<main class='w-100 mw9 bg-white pb5 dark-gray'>
+	<slot name='content'></slot>
+</main>
+
+<Footer />
+
+<script>
+	import Header from './Header.html';
+	import Footer from './Footer.html';
+
+	export default {
+		components: {
+			Header,
+			Footer
+		}
+	};
+</script>
