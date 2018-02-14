@@ -40,7 +40,7 @@ const items = [
         scent: 'Scents of freshly washed linens dried outside on a breezy coastal afternoon',
         price: '24.00',
         size: '12 oz.',
-        slug: 'cotton-8oz',
+        slug: 'cotton-12oz',
         image: '/cotton-12oz.png',
         shippingWeight: 500,
     },
