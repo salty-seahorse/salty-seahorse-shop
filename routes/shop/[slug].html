@@ -32,6 +32,23 @@
     <meta name='product:brand' content='Salty Seahorse Shop'>
 </:Head>
 
+<div vocab="http://schema.org/" typeof="Product">
+    <span property="brand">Salty Seahorse Shop</span>
+    <span property="name">{{ item.title }}</span>
+    <img property="image" src="https://www.saltyseahorseshop.com{{ item.image }}" alt={{ item.title }} />
+    <span property="description">{{ item.scent }}</span>
+    <span property="mpn">{{ item.slug }}</span>
+    <span property="offers" typeof="Offer">
+        <meta property="priceCurrency" content="USD" />$
+        <span property="price">{{ item.price }}</span>
+        <span property="seller" typeof="Organization">
+            <span property="name">Salty Seahorse Shop</span>
+        </span>
+        <link property="itemCondition" href="http://schema.org/NewCondition" />
+        <link property="availability" href="http://schema.org/InStock" />
+    </span>
+</div>
+
 <Layout>
     <div slot='navigation'>
         <Nav />
@@ -72,19 +89,21 @@
 
                 <div class='f4 f3-ns mt4'>Estimated Ship Date: March 1</div>
 
-                <button
-                    class='snipcart-add-item db center dib-ns open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
-                    data-item-name={{ item.title }}
-                    data-item-price={{ item.price }}
-                    data-item-image={{ item.image }}
-                    data-item-id={{ item.slug }}
-                    data-item-url={{ `/shop/${item.slug}` }}
-                    data-item-weight={{ item.shippingWeight }}
-                >ADD TO CART</button>
+                <button class='snipcart-add-item db center dib-ns open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
+                    data-item-name={{ item.title }} data-item-price={{ item.price }} data-item-image={{ item.image }} data-item-id={{
+                    item.slug }} data-item-url={{ `/shop/${item.slug}` }} data-item-weight={{ item.shippingWeight }}>ADD TO CART</button>
             </div>
         </div>
     </div>
 </Layout>
+
+<style>
+    [typeof="Product"] {
+        height: 0;
+        width: 0;
+        opacity: 0;
+    }
+</style>
 
 <script>
     import Layout from '../_components/Layout.html';
