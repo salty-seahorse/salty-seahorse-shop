@@ -45,7 +45,7 @@
             </h1>
         </div>
 
-        <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org' typeof='ItemList' >
+        <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
             {{ #each items as item, i }}
             <li property='itemListElement' typeof='ListItem'>
                 <a class='link fl w-100 w-50-m w-third-ns pa3' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
