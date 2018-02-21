@@ -32,44 +32,53 @@
     <meta name='product:brand' content='Salty Seahorse Shop'>
 </:Head>
 
-<div vocab="http://schema.org/" typeof="Product">
-    <span property="brand">Salty Seahorse Shop</span>
-    <span property="name">{{ item.title }}</span>
-    <img property="image" src="https://www.saltyseahorseshop.com{{ item.image }}" alt={{ item.title }} />
-    <span property="description">{{ item.scent }}</span>
-    <span property="mpn">{{ item.slug }}</span>
-    <span property="offers" typeof="Offer">
-        <meta property="priceCurrency" content="USD" />$
-        <span property="price">{{ item.price }}</span>
-        <span property="seller" typeof="Organization">
-            <span property="name">Salty Seahorse Shop</span>
-        </span>
-        <link property="itemCondition" href="http://schema.org/NewCondition" />
-        <link property="availability" href="http://schema.org/InStock" />
-    </span>
-</div>
-
 <Layout>
     <div slot='navigation'>
-        <Nav />
+        <Nav page='shop' />
     </div>
 
     <div slot='content' class='mh3 pv4'>
-        <div class='f5 fw1 mb4'>
-            <a class='link' href='/shop'>Shop</a>
-            <span class='mh2'>></span>
-            <span>{{ item.title }}</span>
-        </div>
-        <div class='cf'>
+        <ol class='ma0 mb4 pa0 list cf' vocab='http://schema.org' typeof='BreadcrumbList' >
+            <li class='fl' property='itemListElement' typeof='ListItem'>
+                <a class='no-underline' href='/shop' proprety='item' typeof='WebPage'>
+                    <span property='name'>Shop</span>
+                    <span class='mh2 pr1'>></span>
+                </a>
+                <meta property='position' content='1'>
+            </li>
+            <li class='fl' property='itemListElement' typeof='ListItem'>
+                <a class='no-underline' href={{`/shop/${ item.slug }`}} proprety='item' typeof='WebPage'>
+                    <span property='name'>{{ item.title }}</span>
+                </a>
+                <meta property='position' content='2'>
+            </li>
+        </ol>
+
+        <div class='cf' vocab='http://schema.org/' typeof='Product'>
+            <span property='brand' typeof='Organization'>
+                <meta property='name' content='Salty Seahorse Shop' />
+            </span>
+
             <div class='fl dn db-ns w-third ph2'>
-                <img class='db center mw5 w-100' src={{ item.image }} alt={{ item.title }} />
+                <img class='db center mw5 w-100' src={{ item.image }} alt={{ item.title }} property='image' />
             </div>
+
             <div class='fl w-100 w-two-thirds-ns pl4-ns pl6-l'>
-                <div class='f1 tc tl-ns'>{{ item.title }}</div>
+                <div class='f1 tc tl-ns' property='name'>{{ item.title }}</div>
 
                 <img class='mt4 mw4 db center dn-ns' src={{ item.image }} alt={{ item.title }} />
-                <div class='f3 f2-ns mt3 gray'>${{ item.price }}</div>
-                <div class='f4 f3-ns b mt2 mt3-ns'>{{ item.scent }}</div>
+
+                <div class='f3 f2-ns mt3 gray' property='offers' typeof='Offer'>
+                    <meta property='priceCurrency' content='USD' />
+                    <span property='seller' typeof='Organization'>
+                        <meta property='name' content='Salty Seahorse Shop' />
+                    </span>
+                    <link property='itemCondition' href='http://schema.org/NewCondition' />
+                    <link property='availability' href='http://schema.org/InStock' />
+                    $<span property='price'>{{ item.price }}</span>
+                </div>
+
+                <div class='f4 f3-ns b mt2 mt3-ns' property='description'>{{ item.scent }}</div>
 
                 <div class='f5 f4-ns fw1 mt4 lh-copy'>
                     <span>{{ item.size }}</span>
@@ -96,14 +105,6 @@
         </div>
     </div>
 </Layout>
-
-<style>
-    [typeof="Product"] {
-        height: 0;
-        width: 0;
-        opacity: 0;
-    }
-</style>
 
 <script>
     import Layout from '../_components/Layout.html';
