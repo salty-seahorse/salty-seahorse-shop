@@ -13,8 +13,8 @@
     <meta name='twitter:card' content='summary'>
     <meta name='twitter:title' content={{ title }}>
     <meta name='twitter:description' content={{ description }}>
-    <meta name='twitter:site' content='@salty_seahorse_'>
-    <meta name='twitter:creator' content='@salty_seahorse_'>
+    <meta name='twitter:site' content='@{{ config.twitterId }}'>
+    <meta name='twitter:creator' content='@{{ config.twitterId }}'>
     <meta name='twitter:image:src' content={{ image }}>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
@@ -23,7 +23,7 @@
     <meta name='og:image' content={{ image }}>
     <meta name='og:url' content={{ url }}>
     <meta name='og:site_name' content={{ title }}>
-    <meta name='fb:admins' content='thesaltyseahorse'>
+    <meta name='fb:admins' content={{ config.facebookId }}>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
     {{ #if availability }}
@@ -37,16 +37,22 @@
 </:Head>
 
 <script>
+    import config from '../_config';
+
     export default {
         data() {
             return {
                 title: 'Salty Seahorse Shop',
                 description: 'Coastal Candles for a Cause',
-                image: 'https://www.saltyseahorseshop.com/tiki-bar-candle.jpg',
-                url: 'https://www.saltyseahorseshop.com',
+                image: `${ ENV.baseUrl }tiki-bar-candle.jpg`,
+                url: ENV.baseUrl,
                 availability: undefined, // 'instock', 'oos', 'pending', 'preorder', 'out of stock', 'discontinued'
                 price: undefined // without any currency sign, e.g., '6.50'
             };
+        },
+
+        helpers: {
+            config
         }
     }
 </script>

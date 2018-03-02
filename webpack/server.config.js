@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
+const isDev = config.dev;
+
 module.exports = {
 	entry: config.server.entry(),
 	output: config.server.output(),
@@ -26,5 +28,10 @@ module.exports = {
 				}
 			}
 		]
-	}
+	},
+	plugins: [
+		new webpack.DefinePlugin({
+			ENV: JSON.stringify(require(`../environments/${isDev ? 'dev' : 'prod'}.config.js`))
+		})
+	]
 };

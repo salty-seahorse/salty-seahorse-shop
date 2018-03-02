@@ -6,7 +6,7 @@ const items = [
         size: '8 oz.',
         burnTime: '80',
         slug: 'tiki-8oz',
-        image: '/tiki-8oz.png',
+        image: 'tiki-8oz.png',
         shippingWeight: 500,
     },
     {
@@ -16,7 +16,7 @@ const items = [
         size: '12 oz.',
         burnTime: '110',
         slug: 'tiki-12oz',
-        image: '/tiki-12oz.png',
+        image: 'tiki-12oz.png',
         shippingWeight: 500,
     },
     {
@@ -26,7 +26,7 @@ const items = [
         size: '16 oz.',
         burnTime: '140',
         slug: 'tiki-16oz',
-        image: '/tiki-16oz.png',
+        image: 'tiki-16oz.png',
         shippingWeight: 600,
     },
     {
@@ -36,7 +36,7 @@ const items = [
         size: '8 oz.',
         burnTime: '80',
         slug: 'cotton-8oz',
-        image: '/cotton-8oz.png',
+        image: 'cotton-8oz.png',
         shippingWeight: 500,
     },
     {
@@ -46,7 +46,7 @@ const items = [
         size: '12 oz.',
         burnTime: '110',
         slug: 'cotton-12oz',
-        image: '/cotton-12oz.png',
+        image: 'cotton-12oz.png',
         shippingWeight: 500,
     },
     {
@@ -56,7 +56,7 @@ const items = [
         size: '16 oz.',
         burnTime: '140',
         slug: 'cotton-16oz',
-        image: '/cotton-16oz.png',
+        image: 'cotton-16oz.png',
         shippingWeight: 600,
     },
     {
@@ -66,7 +66,7 @@ const items = [
         size: '8 oz.',
         burnTime: '80',
         slug: 'gulf-8oz',
-        image: '/gulf-8oz.png',
+        image: 'gulf-8oz.png',
         shippingWeight: 500,
     },
     {
@@ -76,7 +76,7 @@ const items = [
         size: '12 oz.',
         burnTime: '110',
         slug: 'gulf-12oz',
-        image: '/gulf-12oz.png',
+        image: 'gulf-12oz.png',
         shippingWeight: 500,
     },
     {
@@ -86,7 +86,7 @@ const items = [
         size: '16 oz.',
         burnTime: '140',
         slug: 'gulf-16oz',
-        image: '/gulf-16oz.png',
+        image: 'gulf-16oz.png',
         shippingWeight: 600,
     },
 ];

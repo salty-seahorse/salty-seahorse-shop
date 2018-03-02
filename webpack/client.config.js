@@ -43,6 +43,9 @@ module.exports = {
 		].filter(Boolean)
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			ENV: JSON.stringify(require(`../environments/${isDev ? 'dev' : 'prod'}.config.js`))
+		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			minChunks: 2,
 			async: false,
