@@ -23,7 +23,7 @@
     <meta name='og:image' content={{ image }}>
     <meta name='og:url' content={{ url }}>
     <meta name='og:site_name' content={{ title }}>
-    <meta name='fb:admins' content='thesaltyseahorse'>
+    <meta name='fb:admins' content={{ config.facebookId }}>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
     {{ #if availability }}
@@ -37,16 +37,22 @@
 </:Head>
 
 <script>
+    import config from '../_config';
+
     export default {
         data() {
             return {
                 title: 'Salty Seahorse Shop',
                 description: 'Coastal Candles for a Cause',
-                image: 'https://www.saltyseahorseshop.com/tiki-bar-candle.jpg',
-                url: 'https://www.saltyseahorseshop.com',
+                image: `${ENV.baseUrl}tiki-bar-candle.jpg`,
+                url: ENV.baseUrl,
                 availability: undefined, // 'instock', 'oos', 'pending', 'preorder', 'out of stock', 'discontinued'
                 price: undefined // without any currency sign, e.g., '6.50'
             };
+        },
+        
+        helpers: {
+            config
         }
     }
 </script>

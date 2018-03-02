@@ -5,11 +5,11 @@
             <span class='snipcart-total-items white f5 open-sans nl1'>0</span>
         </a>
     </div>
-    <meta property='url' content='https://www.saltyseahorseshop.com' />
-    <meta property='logo' content='https://www.saltyseahorseshop.com/logo.png' />
-    <meta property='sameAs' content='https://www.facebook.com/thesaltyseahorse' />
-    <meta property='sameAs' content='https://www.instagram.com/the_salty_seahorse' />
-    <meta property='sameAs' content='https://twitter.com/salty_seahorse_' />
+    <meta property='url' content={{ ENV.baseUrl }} />
+    <meta property='logo' content='{{ ENV.baseUrl }}logo.png' />
+    <meta property='sameAs' content='https://www.facebook.com/{{ config.facebookId }}' />
+    <meta property='sameAs' content='https://www.instagram.com/{{ config.instagramId }}' />
+    <meta property='sameAs' content='https://twitter.com/{{ config.twitterId }}' />
 </header>
 
 <div class='h3'></div>
@@ -20,3 +20,13 @@
         background-origin: content-box;
     }
 </style>
+
+<script>
+    import config from '../_config';
+    export default {
+        helpers: {
+            config,
+            ENV
+        }
+    }
+</script>

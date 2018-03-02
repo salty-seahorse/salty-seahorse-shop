@@ -4,26 +4,26 @@
     <title>{{ item.title }}</title>
     <!-- Search Engine -->
     <meta name='description' content={{ item.scent }}>
-    <meta name='image' content={{ `https://www.saltyseahorseshop.com${item.image}` }}>
+    <meta name='image' content={{ `${ENV.baseUrl}${item.image}` }}>
     <!-- Schema.org for Google -->
     <meta itemprop='name' content={{ item.title }}>
     <meta itemprop='description' content={{ item.scent }}>
-    <meta itemprop='image' content={{ `https://www.saltyseahorseshop.com${item.image}` }}>
+    <meta itemprop='image' content={{ `${ENV.baseUrl}${item.image}` }}>
     <!-- Twitter -->
     <meta name='twitter:card' content='summary'>
     <meta name='twitter:title' content={{ item.title }}>
     <meta name='twitter:description' content={{ item.scent }}>
     <meta name='twitter:site' content='@salty_seahorse_'>
     <meta name='twitter:creator' content='@salty_seahorse_'>
-    <meta name='twitter:image:src' content={{ `https://www.saltyseahorseshop.com${item.image}` }}>
+    <meta name='twitter:image:src' content={{ `${ENV.baseUrl}${item.image}` }}>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name='og:title' content={{ item.title }}>
     <meta name='og:description' content={{ item.scent }}>
-    <meta name='og:image' content={{ `https://www.saltyseahorseshop.com${item.image}` }}>
-    <meta name='og:url' content={{ `https://www.saltyseahorseshop.com/shop/${item.slug}` }}>
+    <meta name='og:image' content={{ `${ENV.baseUrl}${item.image}` }}>
+    <meta name='og:url' content={{ `${ENV.baseUrl}shop/${item.slug}` }}>
     <meta name='og:site_name' content={{ item.title }}>
-    <meta name='fb:admins' content='thesaltyseahorse'>
+    <meta name='fb:admins' content={{ config.facebookId }}>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
     <meta name='product:availability' content='preorder'>
@@ -110,6 +110,7 @@
 <script>
     import Layout from '../_components/Layout.html';
     import Nav from '../_components/Nav.html';
+    import config from '../_config';
 
     export default {
         components: {
@@ -122,6 +123,10 @@
             return fetch(`/api/shop`).then(r => r.json()).then(items => {
                 return { item: items.find(i => i.slug === slug) };
             });
+        },
+        helpers: {
+            config,
+            ENV
         }
     }
 </script>
