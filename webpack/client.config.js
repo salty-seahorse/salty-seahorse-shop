@@ -47,12 +47,6 @@ module.exports = {
 			minChunks: 2,
 			async: false,
 			children: true
-		}),
-		new webpack.DefinePlugin({
-			ENV: JSON.stringify(require(`../environments/${isDev ? 'dev' : 'prod'}.config.js`)),
-			"process.env": {
-				"NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
-			}
 		})
 	].concat(isDev ? [
 		new webpack.HotModuleReplacementPlugin()

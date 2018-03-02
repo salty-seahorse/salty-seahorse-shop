@@ -4,26 +4,26 @@
     <title>Salty Seahorse Shop | Coastal Candles for a Cause</title>
     <!-- Search Engine -->
     <meta name='description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta name='image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta name='image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
     <!-- Schema.org for Google -->
     <meta itemprop='name' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta itemprop='description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta itemprop='image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta itemprop='image' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
     <!-- Twitter -->
     <meta name='twitter:card' content='summary'>
     <meta name='twitter:title' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta name='twitter:description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
     <meta name='twitter:site' content='@salty_seahorse_'>
     <meta name='twitter:creator' content='@salty_seahorse_'>
-    <meta name='twitter:image:src' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta name='twitter:image:src' content='https://www.saltyseahorseshop.com/tiki-bar-candle.jpg'>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name='og:title' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta name='og:description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
     <meta name='og:image' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-    <meta name='og:url' content={{ ENV.baseUrl }}>
+    <meta name='og:url' content='https://www.saltyseahorseshop.com'>
     <meta name='og:site_name' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-    <meta name='fb:admins' content={{ config.facebookId }}>
+    <meta name='fb:admins' content='thesaltyseahorse'>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
 	<meta name='product:brand' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
@@ -115,7 +115,6 @@
 	import Nav from './_components/Nav.html';
 	import Modal from './_components/Modal.html';
 	import SignupForm from './_components/SignupForm.html';
-	import config from './_config';
 
 	const section = 'pv4 pv5-l mh3 mh4-m mh5-l bb b--gray';
 	const image = 'fl w-50 w-third-ns';
@@ -142,9 +141,7 @@
 		helpers: {
 			button,
 			image,
-			section,
-			ENV,
-			config
+			section
 		}
 	};
 </script>
