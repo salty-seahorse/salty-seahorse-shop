@@ -1,17 +1,18 @@
-const config = require('sapper/webpack/config.js');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const config = require('sapper/webpack/config.js');
+const pkg = require('../package.json');
 
-const isDev = config.dev;
+const mode = process.env.NODE_ENV;
+const isDev = mode === 'development';
 
 module.exports = {
 	entry: config.server.entry(),
 	output: config.server.output(),
 	target: 'node',
 	resolve: {
-		extensions: ['.js', '.html']
+		extensions: ['.js', '.json', '.html']
 	},
+	externals: Object.keys(pkg.dependencies),
 	module: {
 		rules: [
 			{
@@ -33,5 +34,9 @@ module.exports = {
 		new webpack.DefinePlugin({
 			ENV: JSON.stringify(require(`../environments/${isDev ? 'dev' : 'prod'}.config.js`))
 		})
-	]
+	],
+	mode,
+	performance: {
+		hints: false // it doesn't matter if server.js is large
+	}
 };
