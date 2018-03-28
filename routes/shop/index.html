@@ -48,7 +48,7 @@
         <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
             {{ #each items as item, i }}
             <li property='itemListElement' typeof='ListItem'>
-                <a class='link fl w-100 w-50-m w-third-ns pa3' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
+                <a class='link fl w-100 w-50-ns pa3' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
                     <img class='h5 db center' src='/{{ item.image }}' alt='{{ item.title }}' property='image' />
                     <div class='tc lh-copy'>
                         <span class='f4 f3-m b' property='name'>{{ item.title }}</span>
