@@ -1,15 +1,5 @@
 const items = [
     {
-        title: 'Tiki Bar 8 oz.',
-        scent: 'A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon',
-        price: '20',
-        size: '8 oz.',
-        burnTime: '80',
-        slug: 'tiki-8oz',
-        image: 'tiki-8oz.png',
-        shippingWeight: 500,
-    },
-    {
         title: 'Tiki Bar 12 oz.',
         scent: 'A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon',
         price: '25',
@@ -30,16 +20,6 @@ const items = [
         shippingWeight: 600,
     },
     {
-        title: 'Cotton Bayou 8 oz.',
-        scent: 'Scents of freshly washed linens dried outside on a breezy coastal afternoon',
-        price: '20',
-        size: '8 oz.',
-        burnTime: '80',
-        slug: 'cotton-8oz',
-        image: 'cotton-8oz.png',
-        shippingWeight: 500,
-    },
-    {
         title: 'Cotton Bayou 12 oz.',
         scent: 'Scents of freshly washed linens dried outside on a breezy coastal afternoon',
         price: '25',
@@ -58,16 +38,6 @@ const items = [
         slug: 'cotton-16oz',
         image: 'cotton-16oz.png',
         shippingWeight: 600,
-    },
-    {
-        title: 'The Gulf 8 oz.',
-        scent: 'Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry',
-        price: '20',
-        size: '8 oz.',
-        burnTime: '80',
-        slug: 'gulf-8oz',
-        image: 'gulf-8oz.png',
-        shippingWeight: 500,
     },
     {
         title: 'The Gulf 12 oz.',
