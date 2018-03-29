@@ -121,8 +121,8 @@
         preload({ params, query }) {
             const { slug } = params;
 
-            return fetch(`/api/shop`).then(r => r.json()).then(items => {
-                return { item: items.find(i => i.slug === slug) };
+            return this.fetch(`/shop/${slug}.json`).then(r => r.json()).then(item => {
+                return { item };
             });
         },
 

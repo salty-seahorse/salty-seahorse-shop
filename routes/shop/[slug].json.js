@@ -1,17 +1,17 @@
-import items from './_items';
+import products from './_products';
 
 const lookup = new Map();
-items.forEach(item => {
-    lookup.set(item.slug, JSON.stringify(item));
+products.forEach(product => {
+    lookup.set(product.slug, JSON.stringify(product));
 });
 
 export function get(req, res, next) {
     const { slug } = req.params;
 
     if (lookup.has(slug)) {
-        res.set({
-            'Content-Type': 'application/json'
-        });
+        res.writeHead(200, {
+			'Content-Type': 'application/json'
+		});
 
         res.end(lookup.get(slug));
     } else {

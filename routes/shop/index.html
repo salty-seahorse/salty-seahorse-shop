@@ -89,7 +89,7 @@
         },
 
         preload({ params, query }) {
-            return fetch('/api/shop').then(r => r.json()).then(items => {
+            return this.fetch('/shop.json').then(r => r.json()).then(items => {
                 return { items };
             });
         },
