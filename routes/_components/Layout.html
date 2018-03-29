@@ -1,21 +1,94 @@
-<Header />
+<:Window bind:innerWidth='windowWidth' bind:innerHeight='windowHeight' />
 
-<slot name='navigation'></slot>
+<div class='container pv5 pt6-l'>
+	<div id='header' class='fixed top-0 left-0 right-0 z-1'>
+		<Header on:menu='toggleMenu()' />
+	</div>
 
-<main class='w-100 mw9 bg-white pb5 dark-gray'>
-	<slot name='content'></slot>
-</main>
+	<div id='nav' class='relative' style='{{ heroImage ? `height: ${heroHeight}px` : "" }}'>
+		<Nav :menuOpen :page on:closed='set({ menuOpen: false })' light={{!!heroImage}} />
+		{{#if heroImage}}
+		<img alt='Salty Seahorse Shop' src={{heroImage}} height='{{heroHeight}}' class='absolute top-0 w-100' />
+		{{/if}}
+	</div>
 
-<Footer />
+	<main role='main' class='w-100 mw8 center pb3 pb4-m pb5-l'>
+		<slot></slot>
+	</main>
+
+	<aside>
+		<!-- Optional space for promotions, new scent callouts, etc -->
+	</aside>
+
+	<div id='footer' class='fixed bottom-0 left-0 right-0'>
+		<Footer />
+	</div>
+</div>
+
+<style>
+	.container {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	#nav img {
+		width: 100%;
+		z-index: -1;
+	}
+
+	@media only screen and (min-width: 60em) {
+		.container {
+			grid-template-columns: 1fr minmax(80%, 48em) 1fr;
+		}
+
+		.container #header,
+		.container #nav,
+		.container #footer {
+			grid-column: span 3;
+		}
+
+		.container main {
+			grid-column: 2;
+		}
+	}
+</style>
 
 <script>
-	import Header from './Header.html';
 	import Footer from './Footer.html';
+	import Header from './Header.html';
+	import Nav from './Nav.html';
 
 	export default {
+		data() {
+			return {
+				heroImage: '',
+				menuOpen: false,
+				page: ''
+			}
+		},
+
+		computed: {
+			heroHeight: (windowHeight, windowWidth) => {
+				let height = 3 / 4 * windowWidth;
+
+				if (height > windowHeight * 0.6) {
+					height = windowHeight * 0.6;
+				}
+
+				return height;
+			}
+		},
+
 		components: {
+			Footer,
 			Header,
-			Footer
+			Nav
+		},
+		
+		methods: {
+			toggleMenu() {
+				this.set({ menuOpen: !this.get('menuOpen') })
+			}
 		}
-	};
+	}
 </script>

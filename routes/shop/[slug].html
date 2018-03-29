@@ -32,22 +32,18 @@
     <meta name='product:brand' content='Salty Seahorse Shop'>
 </:Head>
 
-<Layout>
-    <div slot='navigation'>
-        <Nav page='shop' />
-    </div>
-
-    <div slot='content' class='mh3 pv4'>
-        <ol class='ma0 mb4 pa0 list cf' vocab='http://schema.org/' typeof='BreadcrumbList' >
+<Layout page='shop'>
+    <Section>
+        <ol class='ma0 mb4 pa0 list cf f5 f4-l' vocab='http://schema.org/' typeof='BreadcrumbList' >
             <li class='fl' property='itemListElement' typeof='ListItem'>
-                <a class='no-underline' href='/shop' proprety='item' typeof='WebPage'>
+                <a class='no-underline dark-gray' href='/shop' proprety='item' typeof='WebPage'>
                     <span property='name'>Shop</span>
                     <span class='mh2 pr1'>></span>
                 </a>
                 <meta property='position' content='1'>
             </li>
             <li class='fl' property='itemListElement' typeof='ListItem'>
-                <a class='no-underline' href={{`/shop/${ item.slug }`}} proprety='item' typeof='WebPage'>
+                <a class='no-underline dark-gray' href={{`/shop/${ item.slug }`}} proprety='item' typeof='WebPage'>
                     <span property='name'>{{ item.title }}</span>
                 </a>
                 <meta property='position' content='2'>
@@ -104,18 +100,18 @@
                     item.slug }} data-item-url={{ `/shop/${item.slug}` }} data-item-weight={{ item.shippingWeight }}>ADD TO CART</button>
             </div>
         </div>
-    </div>
+    </Section>
 </Layout>
 
 <script>
     import config from '../_config';
     import Layout from '../_components/Layout.html';
-    import Nav from '../_components/Nav.html';
+    import Section from '../_components/Section.html';
 
     export default {
         components: {
             Layout,
-            Nav
+            Section
         },
 
         preload({ params, query }) {

@@ -1,63 +1,99 @@
-<nav class='ph3 f4 {{ color }}'>
-	<ul class='list ma0 pa0 cf'>
-		<li class={{ li }}>
-			<a class='{{ link }} {{page === "home"  ? selected : ""}}' href='/'>home</a>
+<nav role='navigation' class='{{ menuOpen ? "open" : "" }} bg-near-white bg-transparent-l'>
+	<button class='db dn-l fr h3 pa3 ma0 {{ color }}' on:click='close()'>
+		<svg height='100%' id='Layer_1' style='enable-background:new 0 0 512 512;' version='1.1' viewBox='0 0 512 512' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z'/></svg>
+	</button>
+	<ul class='list pa3 ph4-l pv2 ma0 tc-l cf'>
+		{{ #each links as link }}
+		<li class='relative dib pv2 pr3-l fl fn-l {{ page === link.slug ? "selected" : "" }}'>
+			<a href={{ link.href }} class='link f3 b {{ color }}'>{{ link.title }}</a>
 		</li>
-		<li class={{ li }}>
-			<a class='{{ link }} {{page === "about"  ? selected : ""}}' href='/about'>about</a>
-		</li>
-		<li class={{ li }}>
-			<a class='{{ link }} {{page === "shop" ? selected : ""}}' href='/shop'>shop</a>
-		</li>
-		<!--
-		<li class='{{ li }}'>
-			<a class='{{ link }} {{page === "wheretobuy" ? selected : ""}}' href='/wheretobuy'>where to buy</a>
-		</li>
-		-->
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen
-		<li class='{{ li }}'>
-			<a rel=prefetch class='{{ link }} {{page === "blog"  ? selected : ""}}' href='/blog'>blog</a>
-		</li>
-		-->
+		{{ /each }}
 	</ul>
 </nav>
 
 <style>
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: #333;
-		display: block;
-		bottom: -1px;
+
+	nav a:hover {
+		text-decoration: none;
 	}
 
-	.white .selected::after {
-		background-color: white;
+	@media only screen and (max-width: 60em) {
+		nav {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			width: 300px;
+			left: -340px;
+			transition: transform .3s ease-in-out;
+			z-index: 1;
+		}
+
+		nav.open {
+			transform: translateX(340px);
+		}
+
+		nav li {
+			width: calc(100% - 4rem);
+		}
+	}
+
+	@media screen and (min-width: 60rem) {
+		.selected a::after {
+			position: absolute;
+			content: '';
+			width: calc(100% - 1rem);
+			height: 1px;
+			background-color: #333;
+			display: block;
+			bottom: -1px;
+		}
+
+		.selected a.white-l::after {
+			background-color: white;
+		}
 	}
 </style>
 
 <script>
-	const selected = 'selected relative dib';
-	const li = 'db fl';
-	const link = 'b link overflow-hidden pv3 ph2 db';
+	const links = [
+		{
+			href: '/',
+			slug: 'home',
+			title: 'Home'
+		},
+		{
+			href: '/shop',
+			slug: 'shop',
+			title: 'Shop'
+		},
+		{
+			href: '/about',
+			slug: 'about',
+			title: 'About'
+		}
+	];
 
 	export default {
-		data () {
+		data() {
 			return {
-				light: false
-			}
+				light: false,
+				menuOpen: false,
+				links,
+				page: ''
+			};
 		},
+
 		computed: {
-			color: (light) => light ? 'white' : 'dark-gray'
+			color: (light) => light ? 'near-black white-l' : 'near-black dark-gray-l'
 		},
-		helpers: {
-			li,
-			link,
-			selected
+
+		methods: {
+			close() {
+				this.set({
+					menuOpen: false
+				});
+				this.fire('closed');
+			}
 		}
 	}
 </script>

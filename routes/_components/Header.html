@@ -1,10 +1,14 @@
-<header class='bg-salty-teal h3 contain bg-center pv2 ph3-ns fixed top-0 left-0 right-0 z-1' vocab='http://schema.org/' typeof='Organization'>
-    <div class='h-100 pa2 fr'>
-        <button class='snipcart-checkout snipcart-summary link h-100 bg-transparent b--transparent'>
-            <svg xmlns="http://www.w3.org/2000/svg" transform="scale(-1, 1)" height="100%" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-10.563-5l-2.937-7h16.812l-1.977 7h-11.898zm11.233-5h-11.162l1.259 3h9.056l.847-3zm5.635-5l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
-            <span class='snipcart-total-items white f5 open-sans nl1'>0</span>
-        </button>
-    </div>
+<header role='banner' class='bg-salty-teal near-white h3 h4-l ph4-l' vocab='http://schema.org/' typeof='Organization'>
+    <button on:click='menuClicked()' class='bg-transparent b--transparent h2 self-center dn-l'>
+        <svg height='100%' id='Layer_1' style='enable-background:new 0 0 32 32;' version='1.1' viewBox='0 0 32 32' width='32px' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z'/></svg>
+    </button>
+    <a href='/' class='h3 pv2 h4-l pv3-l center'>
+        <img alt='Salty Seahorse Shop' src='/logo.png' class='h-100' />
+    </a>
+    <button class='snipcart-checkout snipcart-summary link h2 h3-l pv3-l self-center bg-transparent b--transparent'>
+        <svg xmlns='http://www.w3.org/2000/svg' transform='scale(-1, 1)' height='100%' viewBox='0 0 24 24'><path d='M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-10.563-5l-2.937-7h16.812l-1.977 7h-11.898zm11.233-5h-11.162l1.259 3h9.056l.847-3zm5.635-5l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z'/></svg>
+        <span class='snipcart-total-items white f5 open-sans nl1'>0</span>
+    </button>
     <meta property='url' content='{{ ENV.baseUrl }}' />
     <meta property='logo' content='{{ ENV.baseUrl }}logo.png' />
     <meta property='sameAs' content='https://www.facebook.com/{{ config.facebook }}' />
@@ -12,19 +16,33 @@
     <meta property='sameAs' content='https://twitter.com/{{ config.twitterId }}' />
 </header>
 
-<div class='h3'></div>
-
 <style>
     header {
-        background-image: url('/logo.png');
-        background-origin: content-box;
+		display: grid;
+		grid-template-columns: 4rem 1fr 4rem;
+	}
+
+	header.near-white > *, nav.near-white > * {
+		fill: #f4f4f4;
     }
+    
+    @media only screen and (min-width: 60em) {
+		header a {
+			grid-column: 2 / 3;
+		}
+	}
 </style>
 
 <script>
     import config from '../_config';
 
     export default {
+        methods: {
+            menuClicked() {
+                this.fire('menu');
+            }
+        },
+
         helpers: {
             config,
             ENV

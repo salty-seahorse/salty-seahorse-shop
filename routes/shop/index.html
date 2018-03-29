@@ -30,13 +30,9 @@
     <meta name='product:brand' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
 </:Head>
 
-<Layout>
-    <div slot='navigation'>
-        <Nav page='shop' />
-    </div>
-
-    <div slot='content' class='db center'>
-        <div class={{ `flex flex-column items-center justify-center ${section}` }}>
+<Layout page='shop'>
+    <Section>
+        <div class='flex flex-column items-center justify-center'>
             <h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy'>
                 Variety is the Spice of Life
             </h1>
@@ -44,48 +40,48 @@
                 Because our candles are made from glass bottles repurposed from local businesses and individuals, the exact color and finish of each candle is unique. Our glass ranges in color from green to brown to clear.
             </h1>
         </div>
+    </Section>
 
-        <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
-            {{ #each items as item, i }}
-            <li property='itemListElement' typeof='ListItem'>
-                <a class='link fl w-100 w-50-ns pa3' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
-                    <img class='h5 db center' src='/{{ item.image }}' alt='{{ item.title }}' property='image' />
-                    <div class='tc lh-copy'>
-                        <span class='f4 f3-m b' property='name'>{{ item.title }}</span>
-                        <br >
-                        <span class='f5 f4-m' property='offers' typeof='Offer'>
-                            <meta property='priceCurrency' content='USD' />
-                            <span property='seller' typeof='Organization'>
-                                <meta property='name' content='Salty Seahorse Shop' />
-                            </span>
-                            <link property='itemCondition' href='http://schema.org/NewCondition' />
-                            <link property='availability' href='http://schema.org/InStock' />
-                            $<span property='price'>{{ item.price }}</span>
+    <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
+        {{ #each items as item, i }}
+        <li property='itemListElement' typeof='ListItem'>
+            <a class='link fl w-100 w-50-ns pa3 dark-gray' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
+                <img class='h5 db center' src='/{{ item.image }}' alt='{{ item.title }}' property='image' />
+                <div class='tc lh-copy'>
+                    <span class='f4 f3-m b' property='name'>{{ item.title }}</span>
+                    <br >
+                    <span class='f5 f4-m' property='offers' typeof='Offer'>
+                        <meta property='priceCurrency' content='USD' />
+                        <span property='seller' typeof='Organization'>
+                            <meta property='name' content='Salty Seahorse Shop' />
                         </span>
-                    </div>
-
-                    <meta property='description' content={{ item.scent }} />
-                    <span property='brand' typeof='Organization'>
-                        <meta property='name' content='Salty Seahorse Shop' />
+                        <link property='itemCondition' href='http://schema.org/NewCondition' />
+                        <link property='availability' href='http://schema.org/InStock' />
+                        $<span property='price'>{{ item.price }}</span>
                     </span>
-                </a>
+                </div>
 
-                <meta property='position' content={{ i + 1 }}>
-            </li>
-            {{ /each }}
-        </ol>
-    </div>
+                <meta property='description' content={{ item.scent }} />
+                <span property='brand' typeof='Organization'>
+                    <meta property='name' content='Salty Seahorse Shop' />
+                </span>
+            </a>
+
+            <meta property='position' content={{ i + 1 }}>
+        </li>
+        {{ /each }}
+    </ol>
 </Layout>
 
 <script>
     import config from '../_config';
     import Layout from '../_components/Layout.html';
-    import Nav from '../_components/Nav.html';
+    import Section from '../_components/Section.html';
 
     export default {
         components: {
             Layout,
-            Nav
+            Section
         },
 
         preload({ params, query }) {
