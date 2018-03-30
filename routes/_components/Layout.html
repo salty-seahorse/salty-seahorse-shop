@@ -8,7 +8,7 @@
 	<div id='nav' class='relative' style='{{ heroImage ? `height: ${heroHeight}px` : "" }}'>
 		<Nav :menuOpen :page on:closed='set({ menuOpen: false })' light={{!!heroImage}} />
 		{{#if heroImage}}
-		<img alt='Salty Seahorse Shop' src={{heroImage}} height='{{heroHeight}}' class='absolute top-0 w-100' />
+		<img alt='Salty Seahorse Shop' src={{heroImagePlaceholder}} data-src={{heroImage}} height='{{heroHeight}}' class='absolute top-0 w-100 lazyload blur-up' />
 		{{/if}}
 	</div>
 
