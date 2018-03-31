@@ -42,35 +42,37 @@
         </div>
     </Section>
 
-    <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
-        {{ #each items as item, i }}
-        <li property='itemListElement' typeof='ListItem'>
-            <a class='link fl w-100 w-50-ns pa3 dark-gray' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
-                <img class='h5 db center' src='/{{ item.image }}' alt='{{ item.title }}' property='image' />
-                <div class='tc lh-copy'>
-                    <span class='f4 f3-m b' property='name'>{{ item.title }}</span>
-                    <br >
-                    <span class='f5 f4-m' property='offers' typeof='Offer'>
-                        <meta property='priceCurrency' content='USD' />
-                        <span property='seller' typeof='Organization'>
-                            <meta property='name' content='Salty Seahorse Shop' />
+    <Section>
+        <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
+            {{ #each items as item, i }}
+            <li property='itemListElement' typeof='ListItem'>
+                <a class='link fl w-100 w-50-ns pa3 dark-gray' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
+                    <img class='max-h5 max-h6-l db center' src='/{{ item.image }}' alt='{{ item.title }}' property='image' />
+                    <div class='tc lh-copy'>
+                        <span class='f4 f3-m b' property='name'>{{ item.title }}</span>
+                        <br >
+                        <span class='f5 f4-m' property='offers' typeof='Offer'>
+                            <meta property='priceCurrency' content='USD' />
+                            <span property='seller' typeof='Organization'>
+                                <meta property='name' content='Salty Seahorse Shop' />
+                            </span>
+                            <link property='itemCondition' href='http://schema.org/NewCondition' />
+                            <link property='availability' href='http://schema.org/InStock' />
+                            $<span property='price'>{{ item.price }}</span>
                         </span>
-                        <link property='itemCondition' href='http://schema.org/NewCondition' />
-                        <link property='availability' href='http://schema.org/InStock' />
-                        $<span property='price'>{{ item.price }}</span>
+                    </div>
+
+                    <meta property='description' content={{ item.scent }} />
+                    <span property='brand' typeof='Organization'>
+                        <meta property='name' content='Salty Seahorse Shop' />
                     </span>
-                </div>
+                </a>
 
-                <meta property='description' content={{ item.scent }} />
-                <span property='brand' typeof='Organization'>
-                    <meta property='name' content='Salty Seahorse Shop' />
-                </span>
-            </a>
-
-            <meta property='position' content={{ i + 1 }}>
-        </li>
-        {{ /each }}
-    </ol>
+                <meta property='position' content={{ i + 1 }}>
+            </li>
+            {{ /each }}
+        </ol>
+    </Section>
 </Layout>
 
 <script>

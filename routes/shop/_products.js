@@ -1,12 +1,33 @@
 const items = [
     {
+        title: 'Coastal Citrus 12 oz.',
+        scent: 'Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"',
+        price: '25',
+        size: '12 oz.',
+        burnTime: '110',
+        slug: 'citrus-12oz',
+        image: 'citrus-12oz.jpg',
+        shippingWeight: 500,
+    },
+    {
+        title: 'Coastal Citrus 16 oz.',
+        scent: 'Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"',
+        price: '30',
+        size: '16 oz.',
+        burnTime: '140',
+        slug: 'citrus-16oz',
+        image: 'citrus-16oz.jpg',
+        shippingWeight: 600,
+    },
+
+    {
         title: 'Tiki Bar 12 oz.',
         scent: 'A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon',
         price: '25',
         size: '12 oz.',
         burnTime: '110',
         slug: 'tiki-12oz',
-        image: 'tiki-12oz.png',
+        image: 'tiki-12oz.jpg',
         shippingWeight: 500,
     },
     {
@@ -16,7 +37,7 @@ const items = [
         size: '16 oz.',
         burnTime: '140',
         slug: 'tiki-16oz',
-        image: 'tiki-16oz.png',
+        image: 'tiki-16oz.jpg',
         shippingWeight: 600,
     },
     {
@@ -26,7 +47,7 @@ const items = [
         size: '12 oz.',
         burnTime: '110',
         slug: 'cotton-12oz',
-        image: 'cotton-12oz.png',
+        image: 'cotton-12oz.jpg',
         shippingWeight: 500,
     },
     {
@@ -36,7 +57,7 @@ const items = [
         size: '16 oz.',
         burnTime: '140',
         slug: 'cotton-16oz',
-        image: 'cotton-16oz.png',
+        image: 'cotton-16oz.jpg',
         shippingWeight: 600,
     },
     {
@@ -46,7 +67,7 @@ const items = [
         size: '12 oz.',
         burnTime: '110',
         slug: 'gulf-12oz',
-        image: 'gulf-12oz.png',
+        image: 'gulf-12oz.jpg',
         shippingWeight: 500,
     },
     {
@@ -56,7 +77,7 @@ const items = [
         size: '16 oz.',
         burnTime: '140',
         slug: 'gulf-16oz',
-        image: 'gulf-16oz.png',
+        image: 'gulf-16oz.jpg',
         shippingWeight: 600,
     },
 ];
