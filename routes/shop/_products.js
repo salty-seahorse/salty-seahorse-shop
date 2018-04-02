@@ -1,5 +1,17 @@
 const items = [
     {
+        title: "Mother's Day Candle Flight",
+        scent: "These candles make a great gift for Mom! This candle flight includes three 4 oz. mini candles - you choose the scents.",
+        details: "How to choose your scents:  Once you've purchased, a member of our Salty Seahorse Team will contact you via email to confirm your preferred scents.",
+        price: '25',
+        size: '4 oz.',
+        burnTime: '40',
+        slug: 'mothers-day-flight',
+        image: 'flight.jpg',
+        shippingWeight: 500,
+        fullWidth: true
+    },
+    {
         title: 'Coastal Citrus 12 oz.',
         scent: 'Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"',
         price: '25',

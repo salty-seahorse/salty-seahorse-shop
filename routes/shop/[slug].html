@@ -81,6 +81,11 @@
                 <div class='f4 f3-ns b mt2 mt3-ns' property='description'>{{ item.scent }}</div>
 
                 <div class='f5 f4-ns fw1 mt4 lh-copy'>
+                    {{ #if item.details }}
+                    <span>{{ item.details }}</span>
+                    <br>
+                    <br>
+                    {{ /if }}
                     <span>Approx. {{ item.size }} ({{ item.burnTime }} hour burn time)</span>
                     <br>
                     <br>
@@ -93,7 +98,7 @@
                     <span>Made in Orange Beach, AL</span>
                     <br>
                     <br>
-                    <span>*We proudly source all of our glass locally, so container color may vary from product image</span>
+                    <span>*We proudly use repurposed glass, so container color may vary from product image</span>
                 </div>
 
                 <div class='f4 f3-ns mt4'>$5 flat shipping on all orders!</div>
