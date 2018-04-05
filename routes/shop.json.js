@@ -1,4 +1,4 @@
-import products from './shop/_products.js';
+import products from './shop/_shop.js';
 
 const contents = JSON.stringify(products);
 

@@ -1,34 +1,34 @@
 <:Head>
     <!-- COMMON TAGS -->
     <meta charset='utf-8'>
-    <title>{{ item.title }}</title>
+    <title>{{ item.metadata.title }}</title>
     <!-- Search Engine -->
-    <meta name='description' content={{ item.scent }}>
-    <meta name='image' content='{{ ENV.baseUrl }}{{ item.image }}'>
+    <meta name='description' content={{ item.metadata.scent }}>
+    <meta name='image' content='{{ ENV.baseUrl }}{{ item.metadata.image }}'>
     <!-- Schema.org for Google -->
-    <meta itemprop='name' content={{ item.title }}>
-    <meta itemprop='description' content={{ item.scent }}>
-    <meta itemprop='image' content='{{ ENV.baseUrl }}{{ item.image }}'>
+    <meta itemprop='name' content={{ item.metadata.title }}>
+    <meta itemprop='description' content={{ item.metadata.scent }}>
+    <meta itemprop='image' content='{{ ENV.baseUrl }}{{ item.metadata.image }}'>
     <!-- Twitter -->
     <meta name='twitter:card' content='summary'>
-    <meta name='twitter:title' content={{ item.title }}>
-    <meta name='twitter:description' content={{ item.scent }}>
+    <meta name='twitter:title' content={{ item.metadata.title }}>
+    <meta name='twitter:description' content={{ item.metadata.scent }}>
     <meta name='twitter:site' content='@{{ config.twitterId }}'>
     <meta name='twitter:creator' content='@{{ config.twitterId }}'>
-    <meta name='twitter:image:src' content='{{ ENV.baseUrl }}{{ item.image }}'>
+    <meta name='twitter:image:src' content='{{ ENV.baseUrl }}{{ item.metadata.image }}'>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-    <meta name='og:title' content={{ item.title }}>
-    <meta name='og:description' content={{ item.scent }}>
-    <meta name='og:image' content='{{ ENV.baseUrl }}{{ item.image }}'>
+    <meta name='og:title' content={{ item.metadata.title }}>
+    <meta name='og:description' content={{ item.metadata.scent }}>
+    <meta name='og:image' content='{{ ENV.baseUrl }}{{ item.metadata.image }}'>
     <meta name='og:url' content='{{ ENV.baseUrl }}shop/{{ item.slug }}'>
-    <meta name='og:site_name' content={{ item.title }}>
+    <meta name='og:site_name' content={{ item.metadata.title }}>
     <meta name='fb:admins' content={{ config.facebookId }}>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
     <meta name='product:availability' content='preorder'>
     <meta name='product:price:currency' content='USD'>
-    <meta name='product:price:amount' content={{ item.price }}>
+    <meta name='product:price:amount' content={{ item.metadata.price }}>
     <meta name='product:brand' content='Salty Seahorse Shop'>
 </:Head>
 
@@ -48,7 +48,7 @@
             </li>
             <li class='fl' property='itemListElement' typeof='ListItem'>
                 <a class='no-underline' href={{`/shop/${ item.slug }`}} proprety='item' typeof='WebPage'>
-                    <span property='name'>{{ item.title }}</span>
+                    <span property='name'>{{ item.metadata.title }}</span>
                 </a>
                 <meta property='position' content='2'>
             </li>
@@ -60,13 +60,13 @@
             </span>
 
             <div class='fl dn db-ns w-third pr2'>
-                <img class='db center mw6 w-100' src='/{{ item.image }}' alt={{ item.title }} property='image' />
+                <img class='db center mw6 w-100' src='/{{ item.metadata.image }}' alt={{ item.metadata.title }} property='image' />
             </div>
 
             <div class='fl w-100 w-two-thirds-ns pl4-ns pl6-l'>
-                <div class='f1 tc tl-ns' property='name'>{{ item.title }}</div>
+                <div class='f1 tc tl-ns' property='name'>{{ item.metadata.title }}</div>
 
-                <img class='mt4 mw5 db center dn-ns' src='/{{ item.image }}' alt={{ item.title }} />
+                <img class='mt4 mw5 db center dn-ns' src='/{{ item.metadata.image }}' alt={{ item.metadata.title }} />
 
                 <div class='f3 f2-ns mt3 gray' property='offers' typeof='Offer'>
                     <meta property='priceCurrency' content='USD' />
@@ -75,38 +75,21 @@
                     </span>
                     <link property='itemCondition' href='http://schema.org/NewCondition' />
                     <link property='availability' href='http://schema.org/InStock' />
-                    $<span property='price'>{{ item.price }}</span>
+                    $<span property='price'>{{ item.metadata.price }}</span>
                 </div>
 
-                <div class='f4 f3-ns b mt2 mt3-ns' property='description'>{{ item.scent }}</div>
+                <div class='f4 f3-ns b mt2 mt3-ns' property='description'>{{ item.metadata.scent }}</div>
 
                 <div class='f5 f4-ns fw1 mt4 lh-copy'>
-                    {{ #if item.details }}
-                    <span>{{ item.details }}</span>
-                    <br>
-                    <br>
-                    {{ /if }}
-                    <span>Approx. {{ item.size }} ({{ item.burnTime }} hour burn time)</span>
-                    <br>
-                    <br>
-                    <span>Natural Soy Wax</span>
-                    <br>
-                    <span>Cotton Wick</span>
-                    <br>
-                    <span>Repurposed & Reusable Glass</span>
-                    <br>
-                    <span>Made in Orange Beach, AL</span>
-                    <br>
-                    <br>
-                    <span>*We proudly use repurposed glass, so container color may vary from product image</span>
+                    {{{ item.html }}}
                 </div>
 
                 <div class='f4 f3-ns mt4'>$5 flat shipping on all orders!</div>
                 <div class='f5 f4-ns mt2'>*Please allow 3-5 business days for processing</div>
 
                 <button class='snipcart-add-item db center dib-ns open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
-                    data-item-name={{ item.title }} data-item-price={{ item.price }} data-item-image='{{ ENV.baseUrl }}{{ item.image }}' data-item-id={{
-                    item.slug }} data-item-url={{ `/shop/${item.slug}` }} data-item-weight={{ item.shippingWeight }}>ADD TO CART</button>
+                    data-item-name={{ item.metadata.title }} data-item-price={{ item.metadata.price }} data-item-image='{{ ENV.baseUrl }}{{ item.metadata.image }}' data-item-id={{
+                    item.slug }} data-item-url={{ `/shop/${item.slug}` }}>ADD TO CART</button>
             </div>
         </div>
     </div>

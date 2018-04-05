@@ -1,7 +1,7 @@
-import products from './_products';
+import shop from './_shop';
 
 const lookup = new Map();
-products.forEach(product => {
+shop.forEach(product => {
     lookup.set(product.slug, JSON.stringify(product));
 });
 

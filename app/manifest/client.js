@@ -9,3 +9,9 @@ export const routes = [
 	{ pattern: /^\/shop(?:\/([^\/]+?).json)?\/?$/, ignore: true },
 	{ pattern: /^\/shop(?:\/([^\/]+?))?\/?$/, params: match => ({ slug: match[1] }), load: () => import(/* webpackChunkName: "shop_$slug$" */ '../../routes/shop/[slug].html') }
 ];
+
+if (module.hot) {
+	import('/Users/tony/Git/SaltySeahorse/salty-seahorse-shop/node_modules/sapper/sapper-dev-client.js').then(client => {
+		client.connect(10000);
+	});
+}
