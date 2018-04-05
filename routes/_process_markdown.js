@@ -1,15 +1,10 @@
+var yaml = require('yaml-front-matter');
+
 export default function process_markdown(markdown) {
-	const match = /---\n([\s\S]+?)\n---/.exec(markdown);
-	const frontMatter = match[1];
-	const content = markdown.slice(match[0].length);
+	const yamlFront = yaml.loadFront(markdown);
+	const content = yamlFront.__content;
 
-	const metadata = {};
-	frontMatter.split('\n').forEach(pair => {
-		const colonIndex = pair.indexOf(':');
-		metadata[pair.slice(0, colonIndex).trim()] = pair
-			.slice(colonIndex + 1)
-			.trim();
-	});
+	delete yamlFront.__content;
 
-	return { metadata, content };
+	return { metadata: yamlFront, content };
 }

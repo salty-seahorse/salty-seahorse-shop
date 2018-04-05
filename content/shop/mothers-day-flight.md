@@ -1,7 +1,7 @@
 ---
 sortOrder: 1
 title: Mother's Day Candle Flight
-scent: These candles make a great gift for Mom! This candle flight includes three 4 oz. mini candles - you choose the scents.
+description: These candles make a great gift for Mom! This candle flight includes three 4 oz. mini candles - you choose the scents.
 price: 25
 size: 4 oz.
 burnTime: 40
