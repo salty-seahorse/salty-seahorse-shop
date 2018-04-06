@@ -1,0 +1,55 @@
+<div class='flex flex-row justify-center items-center'>
+    {{#if title}}
+    <label class='f4 mr3 b'>{{ title }}</label>
+    {{/if}}
+    <button on:click='decrement()' disabled={{ !canDecrement }} class={{ buttonStyle(!canDecrement) }}>-</button>
+    <label class='mh2 w2 tc f3 b'>{{ value }}</label>
+    <button on:click='increment()' disabled={{ !canIncrement }} class={{ buttonStyle(!canIncrement) }}>+</button>
+</div>
+
+<script>
+    export default {
+        data() {
+            return {
+                value: 1,
+                min: 1,
+                max: 10,
+                step: 1,
+                title: ''
+            };
+        },
+
+        computed: {
+            canIncrement: (value, max, step) => value + step <= max,
+            canDecrement: (value, min, step) => value - step >= min
+        },
+
+        methods: {
+            increment() {
+                const { canIncrement, value, step } = this.get();
+
+                if (!canIncrement) {
+                    return;
+                }
+
+                this.set({ value: value + step });
+            },
+
+            decrement() {
+                const { canDecrement, value, step } = this.get();
+
+                if (!canDecrement) {
+                    return;
+                }
+
+                this.set({ value: value - step });
+            }
+        },
+
+        helpers: {
+            buttonStyle(disabled) {
+                return `h2 w2 ba bw1 b--dark-gray bg-animate br2 ${ disabled ? 'bg-moon-gray white' : 'bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white' }`;
+            }
+        }
+    }
+</script>

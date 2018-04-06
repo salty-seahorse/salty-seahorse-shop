@@ -1,0 +1,43 @@
+<button class='w-100 pv2 ph3 bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ' on:click='set({ open: true })'>
+    <slot name='placeholder'></slot>
+</button>
+
+{{#if open}}
+<Modal :title on:close='set({ open: false })'>
+    <ul class='list pa0 mv4 mh2'>
+        {{#each options as option, i}}
+        <li class='f3 white pv2' on:click='select(i)'>{{ option.label }}</li>
+        {{/each}}
+    </ul>
+</Modal>
+{{/if}}
+
+<script>
+    import Modal from './Modal.html';
+
+    export default {
+        components: {
+            Modal
+        },
+
+        data() {
+            return {
+                open: false,
+                options: [], // [{ value: '1', label: 'ABC 123' }]
+                selectedIndex: 0,
+                title: ''
+            };
+        },
+
+        computed: {
+            value: (options, selectedIndex) => options[selectedIndex] && options[selectedIndex].value
+        },
+
+        methods: {
+            select(index) {
+                this.set({ selectedIndex: index, open: false });
+                this.fire('change', this.get('value'));
+            }
+        }
+    }
+</script>

@@ -1,14 +1,20 @@
 ---
-sortOrder: 7
-title: Cotton Bayou 16 oz.
+sortOrder: 3
+title: Cotton Bayou
 description: Scents of freshly washed linens dried outside on a breezy coastal afternoon
-price: 30
-size: 16 oz.
-burnTime: 140
-image: cotton-16oz.jpg
+image: cotton-12oz.jpg
 options:
     - {
+        slug: cotton-12oz,
+        title: Cotton Bayou 12 oz.,
+        size: 12 oz.,
+        price: 25,
+        burnTime: 110,
+        image: cotton-12oz.jpg
+    }
+    - {
         slug: cotton-16oz,
+        title: Cotton Bayou 16 oz.,
         size: 16 oz.,
         price: 30,
         burnTime: 140,
@@ -16,7 +22,7 @@ options:
     }
 ---
 
-Approx. 16 oz. (140 hour burn time)<br>
+Approx. %size% (%burnTime% hour burn time)<br>
 
 Natural Soy Wax<br>
 Cotton Wick<br>

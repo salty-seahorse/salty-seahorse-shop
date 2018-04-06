@@ -48,20 +48,23 @@
         <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
             {{ #each items as item, i }}
             <li property='itemListElement' typeof='ListItem'>
-                <a class='link fl w-100 pa3 {{ item.metadata.fullWidth ? "" : "w-50-ns" }}' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
+                <a class='link fl w-100 w-50-ns ph3 pv3 pv4-ns' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
                     <img class='max-h5 max-h6-l db center' src='/{{ item.metadata.image }}' alt='{{ item.metadata.title }}' property='image' />
-                    <div class='tc lh-copy'>
+                    <div class='tc lh-copy mw5 mw6-l ph4-l db center pt2'>
                         <span class='f4 f3-ns b' property='name'>{{ item.metadata.title }}</span>
                         <br >
-                        <span class='f5 f4-ns' property='offers' typeof='Offer'>
+                        <span class='f5 f4-ns' property='description'>{{ item.metadata.description }}</span>
+                        {{ #each item.metadata.options as option }}
+                        <span property='offers' typeof='Offer'>
                             <meta property='priceCurrency' content='USD' />
                             <span property='seller' typeof='Organization'>
                                 <meta property='name' content='Salty Seahorse Shop' />
                             </span>
                             <link property='itemCondition' href='http://schema.org/NewCondition' />
                             <link property='availability' href='http://schema.org/InStock' />
-                            $<span property='price'>{{ item.metadata.price }}</span>
+                            <meta property='price' href='option.price' />
                         </span>
+                        {{ /each }}
                     </div>
 
                     <meta property='description' content={{ item.metadata.description }} />

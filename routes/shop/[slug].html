@@ -38,23 +38,9 @@
     </div>
 
     <div slot='content' class='mh3 pv4'>
-        <ol class='ma0 mb4 pa0 list cf' vocab='http://schema.org/' typeof='BreadcrumbList' >
-            <li class='fl' property='itemListElement' typeof='ListItem'>
-                <a class='no-underline' href='/shop' proprety='item' typeof='WebPage'>
-                    <span property='name'>Shop</span>
-                    <span class='mh2 pr1'>></span>
-                </a>
-                <meta property='position' content='1'>
-            </li>
-            <li class='fl' property='itemListElement' typeof='ListItem'>
-                <a class='no-underline' href={{`/shop/${ item.slug }`}} proprety='item' typeof='WebPage'>
-                    <span property='name'>{{ item.metadata.title }}</span>
-                </a>
-                <meta property='position' content='2'>
-            </li>
-        </ol>
+        <Breadcrumb items={{ breadcrumbs }}/>
 
-        <div class='cf' vocab='http://schema.org/' typeof='Product'>
+        <div class='cf mt3' vocab='http://schema.org/' typeof='Product'>
             <span property='brand' typeof='Organization'>
                 <meta property='name' content='Salty Seahorse Shop' />
             </span>
@@ -64,32 +50,60 @@
             </div>
 
             <div class='fl w-100 w-two-thirds-ns pl4-ns pl6-l'>
-                <div class='f1 tc tl-ns' property='name'>{{ item.metadata.title }}</div>
+                <div class='f1 tc tl-ns mb4' property='name'>{{ item.metadata.title }}</div>
 
-                <img class='mt4 mw5 db center dn-ns' src='/{{ selected.image }}' alt={{ item.metadata.title }} />
+                <img class='mb4 mw5 db center dn-ns' src='/{{ selected.image }}' alt={{ item.metadata.title }} />
 
-                <div class='f3 f2-ns mt3 gray' property='offers' typeof='Offer'>
-                    <meta property='priceCurrency' content='USD' />
-                    <span property='seller' typeof='Organization'>
-                        <meta property='name' content='Salty Seahorse Shop' />
-                    </span>
-                    <link property='itemCondition' href='http://schema.org/NewCondition' />
-                    <link property='availability' href='http://schema.org/InStock' />
-                    $<span property='price'>{{ selected.price }}</span>
+                {{ #if item.metadata.options.length > 1 }}
+                <div class='mw5-ns db center ml0-ns'>
+                    <Select options={{ sizeOptions }} title='Pick your size:' on:change='onselect(event)'>
+                        <div slot='placeholder' class='flex flex-row justify-center items-center'>
+                            <div class='tl' style='flex: 1;'>
+                                <span class='lh-copy'>Size:</span>
+                                <br>
+                                <span class='b'>{{ selected.size }}</span>
+                            </div>
+                            <div>&gt;</div>
+                        </div>
+                    </Select>
+                </div>
+                {{ /if }}
+
+                <div class='mw5-ns db center ml0-ns flex flex-row justify-between items-center mt3 mt4-ns'>
+                    <div class='f2 gray' property='offers' typeof='Offer'>
+                        <meta property='priceCurrency' content='USD' />
+                        <span property='seller' typeof='Organization'>
+                            <meta property='name' content='Salty Seahorse Shop' />
+                        </span>
+                        <link property='itemCondition' href='http://schema.org/NewCondition' />
+                        <link property='availability' href='http://schema.org/InStock' />
+                        $<span property='price'>{{ selected.price }}</span>
+                    </div>
                 </div>
 
-                <div class='f4 f3-ns b mt2 mt3-ns' property='description'>{{ item.metadata.description }}</div>
+                <div class='f4 f3-ns mt1'>$5 flat shipping on all orders!</div>
+                <div class='f5 f4-ns mt2'>*Please allow 3-5 business days for processing</div>
+
+                <div class='mw5-ns db center ml0-ns mt3'>
+                    <Stepper bind:value='quantity' min=1 max=10 step=1 title='Quantity:'/>
+                </div>
+
+                <button class='w-100 mw5-ns snipcart-add-item open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
+                    data-item-name={{ selected.title }}
+                    data-item-price={{ selected.price }}
+                    data-item-image='{{ ENV.baseUrl }}{{ selected.image }}'
+                    data-item-id={{ selected.slug }}
+                    data-item-url={{ `/shop/${item.slug}` }}
+                    data-item-quantity={{ quantity }}
+                >
+                    ADD TO CART
+                </button>
+
+                <div class='f4 f3-ns b mt4 mw6' property='description'>{{ item.metadata.description }}</div>
 
                 <div class='f5 f4-ns fw1 mt4 lh-copy'>
                     {{{ formattedHtml }}}
                 </div>
-
-                <div class='f4 f3-ns mt4'>$5 flat shipping on all orders!</div>
-                <div class='f5 f4-ns mt2'>*Please allow 3-5 business days for processing</div>
-
-                <button class='snipcart-add-item db center dib-ns open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
-                    data-item-name={{ item.metadata.title }} data-item-price={{ selected.price }} data-item-image='{{ ENV.baseUrl }}{{ selected.image }}' data-item-id={{
-                    selected.slug }} data-item-url={{ `/shop/${item.slug}` }}>ADD TO CART</button>
             </div>
         </div>
     </div>
@@ -97,27 +111,51 @@
 
 <script>
     import config from '../_config';
+    import Breadcrumb from '../_components/Breadcrumb.html';
     import Layout from '../_components/Layout.html';
     import Nav from '../_components/Nav.html';
+    import Select from '../_components/Select.html';
+    import Stepper from '../_components/Stepper.html';
 
     export default {
         components: {
+            Breadcrumb,
             Layout,
-            Nav
+            Nav,
+            Select,
+            Stepper
         },
 
         data() {
             return {
-                selectedIndex: 0
+                quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => ({ value: i, label: i })),
+                selectedIndex: 0,
+                quantity: 1
             };
         },
 
         computed: {
+            breadcrumbs: item => item ? [{
+                href: '/shop',
+                name: 'Shop'
+            }, {
+                href: `/shop/${item.slug}`,
+                name: item.metadata.title
+            }] : [],
+
             selected: (item, selectedIndex) => item.metadata.options[selectedIndex],
+            
+            sizeOptions: (item) => item.metadata.options.map((o, i) => ({ value: i, label: `${o.size}: \$${o.price}` })),
 
             formattedHtml: (item, selected) => item.html
                 .replace('%size%', selected.size)
                 .replace('%burnTime%', selected.burnTime)
+        },
+
+        methods: {
+            onselect(event) {
+                this.set({ selectedIndex: event });
+            }
         },
 
         preload({ params, query }) {

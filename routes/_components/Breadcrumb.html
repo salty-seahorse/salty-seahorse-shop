@@ -1,0 +1,23 @@
+<ol class='ma0 pa0 list cf' vocab='http://schema.org/' typeof='BreadcrumbList'>
+    {{#each items as item, i}}
+    <li class='fl' property='itemListElement' typeof='ListItem'>
+        <a class='no-underline' href='{{ item.href }}' property='item' typeof='WebPage'>
+            <span property='name'>{{ item.name }}</span>
+            {{#if i < items.length - 1}}
+            <span class='mh2 pr1'>></span>
+            {{/if}}
+        </a>
+        <meta property='position' content='{{ i + 1 }}'>
+    </li>
+    {{/each}}
+</ol>
+
+<script>
+    export default {
+        data() {
+            return {
+                items: [] // [{ href, name }]
+            };
+        }
+    }
+</script>
