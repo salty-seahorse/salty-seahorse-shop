@@ -54,7 +54,7 @@
                         <span class='f4 f3-ns b' property='name'>{{ item.metadata.title }}</span>
                         <br >
                         <span class='f5 f4-ns' property='description'>{{ item.metadata.description }}</span>
-                        {{ #each item.metadata.options as option }}
+                        {{ #each optionsForItem(item) as option }}
                         <span property='offers' typeof='Offer'>
                             <meta property='priceCurrency' content='USD' />
                             <span property='seller' typeof='Organization'>
@@ -84,6 +84,7 @@
     import config from '../_config';
     import Layout from '../_components/Layout.html';
     import Nav from '../_components/Nav.html';
+    import optionsForItem from './_utils/optionsForItem';
 
     export default {
         components: {
@@ -99,7 +100,8 @@
 
         helpers: {
             config,
-            ENV
+            ENV,
+            optionsForItem
         }
     }
 </script>

@@ -54,14 +54,14 @@
 
                 <img class='mb4 mw5 db center dn-ns' src='/{{ selected.image }}' alt={{ item.metadata.title }} />
 
-                {{ #each Object.entries(item.metadata.options) as [name, option] }}
+                {{ #each optionsForItem(item) as option }}
                 <div class='mw5-ns db center ml0-ns mb3'>
-                    <Select options={{ valueLabelsForOption(option) }} title='{{ option.title }}:' on:change='onselect(name, event)'>
+                    <Select options={{ valuesForOption(option) }} title='{{ option.title }}:' on:change='onselect(option.slug, event)'>
                         <div slot='placeholder' class='flex flex-row justify-center items-center'>
                             <div class='tl' style='flex: 1;'>
                                 <span class='lh-copy'>{{ option.title }}:</span>
                                 <br>
-                                <span class='b'>{{ option.values[selectedOptions[name]].label }}</span>
+                                <span class='b'>{{ option.values[selectedOptions[option.slug]].label }}</span>
                             </div>
                             <div>&gt;</div>
                         </div>
@@ -95,6 +95,7 @@
                     data-item-price={{ selected.price }}
                     data-item-id={{ selected.slug }}
                     data-item-description={{ itemDescription }}
+                    data-item-metadata={{ itemDescription }}
                     data-item-url={{ `/shop/${item.slug}` }}
                     data-item-image='{{ ENV.baseUrl }}{{ selected.image }}'
                     data-item-quantity={{ quantity }}
@@ -121,6 +122,8 @@
     import Nav from '../_components/Nav.html';
     import Select from '../_components/Select.html';
     import Stepper from '../_components/Stepper.html';
+    import optionsForItem from './_utils/optionsForItem';
+    import valuesForOption from './_utils/valuesForOption';
 
     export default {
         components: {
@@ -159,18 +162,12 @@
             },
 
             itemDescription: (item, selectedOptions) => {
-                return Object.keys(selectedOptions).reduce((acc, key) => {
-                    if (acc.length) {
-                        acc += '<br>';
-                    }
-
+                return Object.keys(selectedOptions).map((key) => {
                     const option = item.metadata.options[key];
                     const value = option.values[selectedOptions[key]];
 
-                    acc += value.label;
-
-                    return acc;
-                }, '');
+                    return value.label;
+                }).join(', ');
             },
 
             formattedHtml: (item, selected) => item.html
@@ -202,15 +199,8 @@
         helpers: {
             config,
             ENV,
-            valueLabelsForOption(option) {
-                return Object.keys(option.values).map(v => {
-                    return {
-                        label: option.values[v].label,
-                        value: v,
-                        description: option.values[v].description
-                    }
-                });
-            }
+            optionsForItem,
+            valuesForOption
         }
     }
 </script>
