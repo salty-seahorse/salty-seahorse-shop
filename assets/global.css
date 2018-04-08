@@ -24,6 +24,10 @@ svg {
 	fill: white;
 }
 
+.list {
+	overflow-y: scroll;
+}
+
 .mw-third {
 	max-width: 33.33333%;
 }
@@ -45,7 +49,7 @@ svg {
 }
 
 .min-vh-two-thirds {
-	min-height: 33.3vh;
+	min-height: 66.66667vh;
 }
 
 .center-h {
@@ -148,6 +152,18 @@ svg {
 	max-height: 24rem;
 }
 
+.max-vh-50 {
+	max-height: 50vh;
+}
+
+.max-vh-two-thirds {
+	max-height: 66.66667vh;
+}
+
+.max-vh-100 {
+	max-height: 100vh;
+}
+
 @media screen and (min-width: 30rem) {
 	.h6-ns {
 		height: 24rem;
@@ -175,6 +191,18 @@ svg {
 	
 	.max-h6-ns {
 		max-height: 24rem;
+	}
+
+	.max-vh-50-ns {
+		max-height: 50vh;
+	}
+	
+	.max-vh-two-thirds-ns {
+		max-height: 66.66667vh;
+	}
+	
+	.max-vh-100-ns {
+		max-height: 100vh;
 	}
 }
 
@@ -206,6 +234,18 @@ svg {
 	.max-h6-m {
 		max-height: 24rem;
 	}
+
+	.max-vh-50-m {
+		max-height: 50vh;
+	}
+	
+	.max-vh-two-thirds-m {
+		max-height: 66.66667vh;
+	}
+	
+	.max-vh-100-m {
+		max-height: 100vh;
+	}
 }
 
 @media screen and (min-width: 60rem) {
@@ -235,5 +275,17 @@ svg {
 	
 	.max-h6-l {
 		max-height: 24rem;
+	}
+
+	.max-vh-50-l {
+		max-height: 50vh;
+	}
+	
+	.max-vh-two-thirds-l {
+		max-height: 66.66667vh;
+	}
+	
+	.max-vh-100-l {
+		max-height: 100vh;
 	}
 }

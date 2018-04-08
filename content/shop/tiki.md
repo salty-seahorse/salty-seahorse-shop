@@ -3,23 +3,27 @@ sortOrder: 5
 title: Tiki Bar
 description: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
 image: tiki-12oz.jpg
+maxQuantity: 25
+cartStackable: true
 options:
-    - {
-        slug: tiki-12oz,
-        title: Tiki Bar 12 oz.,
-        size: 12 oz.,
-        price: 25,
-        burnTime: 110,
-        image: tiki-12oz.jpg
-    }
-    - {
-        slug: tiki-16oz,
-        title: Tiki Bar 16 oz.,
-        size: 16 oz.,
-        price: 30,
-        burnTime: 140,
-        image: tiki-16oz.jpg
-    }
+    size:
+        title: Size
+        default: tiki-12oz
+        values:
+            tiki-12oz:
+                slug: tiki-12oz
+                label: 12 oz. - $25
+                size: 12 oz.
+                price: 25
+                burnTime: 110
+                image: tiki-12oz.jpg
+            tiki-16oz:
+                slug: tiki-16oz
+                label: 16 oz. - $30
+                size: 16 oz.
+                price: 30
+                burnTime: 140
+                image: tiki-16oz.jpg
 ---
 
 Approx. %size% (%burnTime% hour burn time)<br>

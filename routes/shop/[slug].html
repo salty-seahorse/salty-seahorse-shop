@@ -54,20 +54,20 @@
 
                 <img class='mb4 mw5 db center dn-ns' src='/{{ selected.image }}' alt={{ item.metadata.title }} />
 
-                {{ #if item.metadata.options.length > 1 }}
-                <div class='mw5-ns db center ml0-ns'>
-                    <Select options={{ sizeOptions }} title='Pick your size:' on:change='onselect(event)'>
+                {{ #each Object.entries(item.metadata.options) as [name, option] }}
+                <div class='mw5-ns db center ml0-ns mb3'>
+                    <Select options={{ valueLabelsForOption(option) }} title='{{ option.title }}:' on:change='onselect(name, event)'>
                         <div slot='placeholder' class='flex flex-row justify-center items-center'>
                             <div class='tl' style='flex: 1;'>
-                                <span class='lh-copy'>Size:</span>
+                                <span class='lh-copy'>{{ option.title }}:</span>
                                 <br>
-                                <span class='b'>{{ selected.size }}</span>
+                                <span class='b'>{{ option.values[selectedOptions[name]].label }}</span>
                             </div>
                             <div>&gt;</div>
                         </div>
                     </Select>
                 </div>
-                {{ /if }}
+                {{ /each }}
 
                 <div class='mw5-ns db center ml0-ns flex flex-row justify-between items-center mt3 mt4-ns'>
                     <div class='f2 gray' property='offers' typeof='Offer'>
@@ -84,17 +84,22 @@
                 <div class='f4 f3-ns mt1'>$5 flat shipping on all orders!</div>
                 <div class='f5 f4-ns mt2'>*Please allow 3-5 business days for processing</div>
 
+                {{ #if item.metadata.cartStackable }}
                 <div class='mw5-ns db center ml0-ns mt3'>
-                    <Stepper bind:value='quantity' min=1 max=10 step=1 title='Quantity:'/>
+                    <Stepper bind:value='quantity' min=1 max={{ item.metadata.maxQuantity }} step=1 title='Quantity:'/>
                 </div>
+                {{ /if }}
 
                 <button class='w-100 mw5-ns snipcart-add-item open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
                     data-item-name={{ selected.title }}
                     data-item-price={{ selected.price }}
-                    data-item-image='{{ ENV.baseUrl }}{{ selected.image }}'
                     data-item-id={{ selected.slug }}
+                    data-item-description={{ itemDescription }}
                     data-item-url={{ `/shop/${item.slug}` }}
+                    data-item-image='{{ ENV.baseUrl }}{{ selected.image }}'
                     data-item-quantity={{ quantity }}
+                    data-item-max-quantity={{ item.metadata.maxQuantity }}
+                    data-item-stackable={{ item.metadata.cartStackable }}
                 >
                     ADD TO CART
                 </button>
@@ -143,9 +148,30 @@
                 name: item.metadata.title
             }] : [],
 
-            selected: (item, selectedIndex) => item.metadata.options[selectedIndex],
-            
-            sizeOptions: (item) => item.metadata.options.map((o, i) => ({ value: i, label: `${o.size}: \$${o.price}` })),
+            selected: (item, selectedOptions) => {
+                const options = Object.keys(selectedOptions)
+                    .reduce((acc, key) => {
+                        const value = item.metadata.options[key].values[selectedOptions[key]];
+                        return Object.assign(acc, value);
+                    }, {});
+
+                return Object.assign(item.metadata, options);
+            },
+
+            itemDescription: (item, selectedOptions) => {
+                return Object.keys(selectedOptions).reduce((acc, key) => {
+                    if (acc.length) {
+                        acc += '<br>';
+                    }
+
+                    const option = item.metadata.options[key];
+                    const value = option.values[selectedOptions[key]];
+
+                    acc += value.label;
+
+                    return acc;
+                }, '');
+            },
 
             formattedHtml: (item, selected) => item.html
                 .replace('%size%', selected.size)
@@ -153,8 +179,10 @@
         },
 
         methods: {
-            onselect(event) {
-                this.set({ selectedIndex: event });
+            onselect(optionid, valueid) {
+                const { selectedOptions } = this.get();
+                selectedOptions[optionid] = valueid;
+                this.set({ selectedOptions });
             }
         },
 
@@ -162,13 +190,27 @@
             const { slug } = params;
 
             return this.fetch(`/shop/${slug}.json`).then(r => r.json()).then(item => {
-                return { item };
+                const selectedOptions = Object.keys(item.metadata.options)
+                    .reduce((acc, key) => {
+                        acc[key] = item.metadata.options[key].default;
+                        return acc;
+                    }, {});
+                return { item, selectedOptions };
             });
         },
 
         helpers: {
             config,
-            ENV
+            ENV,
+            valueLabelsForOption(option) {
+                return Object.keys(option.values).map(v => {
+                    return {
+                        label: option.values[v].label,
+                        value: v,
+                        description: option.values[v].description
+                    }
+                });
+            }
         }
     }
 </script>

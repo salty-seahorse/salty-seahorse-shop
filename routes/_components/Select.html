@@ -4,13 +4,24 @@
 
 {{#if open}}
 <Modal :title on:close='set({ open: false })'>
-    <ul class='list pa0 mv4 mh2'>
+    <ul class='list pa0 ma0 ph2'>
         {{#each options as option, i}}
-        <li class='f3 white pv2' on:click='select(i)'>{{ option.label }}</li>
+        <li class='f3 white pv3 bb b--white-50' on:click='select(i)'>
+            <div>{{ option.label }}</div>
+            {{ #if option.description }}
+            <div class='f5 mt2 lh-title'>{{ option.description }}</div>
+            {{ /if }}
+        </li>
         {{/each}}
     </ul>
 </Modal>
 {{/if}}
+
+<style>
+    li:last-of-type {
+        border-bottom: none;
+    }
+</style>
 
 <script>
     import Modal from './Modal.html';
