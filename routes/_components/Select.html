@@ -8,8 +8,8 @@
         {{#each options as option, i}}
         <li class='f3 white pv3 bb b--white-50' on:click='select(i)'>
             <div>{{ option.label }}</div>
-            {{ #if option.description }}
-            <div class='f5 mt2 lh-title'>{{ option.description }}</div>
+            {{ #if option.sublabel }}
+            <div class='f5 mt2 lh-title'>{{ option.sublabel }}</div>
             {{ /if }}
         </li>
         {{/each}}

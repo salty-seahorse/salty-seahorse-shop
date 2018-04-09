@@ -14,51 +14,49 @@ options:
         values:
             citrus:
                 label: Coastal Citrus 4 oz.
-                description: Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"
+                sublabel: Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"
             cotton:
                 label: Cotton Bayou 4 oz.
-                description: Scents of freshly washed linens dried outside on a breezy coastal afternoon
+                sublabel: Scents of freshly washed linens dried outside on a breezy coastal afternoon
             gulf:
                 label: The Gulf 4 oz.
-                description: Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry
+                sublabel: Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry
             tiki:
                 label: Tiki Bar 4 oz.
-                description: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
+                sublabel: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
     scent2:
         title: Candle 2
         default: cotton
         values:
             citrus:
                 label: Coastal Citrus 4 oz.
-                description: Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"
+                sublabel: Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"
             cotton:
                 label: Cotton Bayou 4 oz.
-                description: Scents of freshly washed linens dried outside on a breezy coastal afternoon
+                sublabel: Scents of freshly washed linens dried outside on a breezy coastal afternoon
             gulf:
                 label: The Gulf 4 oz.
-                description: Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry
+                sublabel: Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry
             tiki:
                 label: Tiki Bar 4 oz.
-                description: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
+                sublabel: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
     scent3:
         title: Candle 3
         default: gulf
         values:
             citrus:
                 label: Coastal Citrus 4 oz.
-                description: Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"
+                sublabel: Crisp, clean scents of blood orange and grapefruit - your daily dose of Vitamin "Sea"
             cotton:
                 label: Cotton Bayou 4 oz.
-                description: Scents of freshly washed linens dried outside on a breezy coastal afternoon
+                sublabel: Scents of freshly washed linens dried outside on a breezy coastal afternoon
             gulf:
                 label: The Gulf 4 oz.
-                description: Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry
+                sublabel: Delicate floral and fruity blend with hints of rose, violet, peach, citrus, and strawberry
             tiki:
                 label: Tiki Bar 4 oz.
-                description: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
+                sublabel: A refreshing blend of coconut, pineapple, rum, tangerine, banana, and melon
 ---
-
-How to choose your scents:  Once you've purchased, a member of our Salty Seahorse Team will contact you via email to confirm your preferred scents.<br>
 
 Approx. 4 oz. per candle (40 hour burn time each)<br>
 
