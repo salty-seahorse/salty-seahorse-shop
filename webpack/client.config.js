@@ -19,8 +19,6 @@ module.exports = {
 					loader: 'svelte-loader',
 					options: {
 						hydratable: true,
-						cascade: false,
-						store: true,
 						hotReload: true
 					}
 				}
@@ -36,7 +34,7 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			ENV: JSON.stringify(require(`../environments/${isDev ? 'dev' : 'prod'}.config.js`))
-		})
+		}),
 	].filter(Boolean),
 	devtool: isDev && 'inline-source-map'
 };

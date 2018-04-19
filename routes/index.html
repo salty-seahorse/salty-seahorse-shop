@@ -1,38 +1,38 @@
-<:Head>
+<svelte:head>
 	<!-- COMMON TAGS -->
     <meta charset='utf-8'>
     <title>Salty Seahorse Shop | Coastal Candles for a Cause</title>
     <!-- Search Engine -->
     <meta name='description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta name='image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta name='image' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
     <!-- Schema.org for Google -->
     <meta itemprop='name' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta itemprop='description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta itemprop='image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta itemprop='image' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
     <!-- Twitter -->
     <meta name='twitter:card' content='summary'>
     <meta name='twitter:title' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta name='twitter:description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta name='twitter:site' content='@{{ config.twitterId }}'>
-    <meta name='twitter:creator' content='@{{ config.twitterId }}'>
-    <meta name='twitter:image:src' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta name='twitter:site' content='@{ config.twitterId }'>
+    <meta name='twitter:creator' content='@{ config.twitterId }'>
+    <meta name='twitter:image:src' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name='og:title' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta name='og:description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
     <meta name='og:image' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-    <meta name='og:url' content={{ ENV.baseUrl }}>
+    <meta name='og:url' content={ ENV.baseUrl }>
     <meta name='og:site_name' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-    <meta name='fb:admins' content={{ config.facebookId }}>
+    <meta name='fb:admins' content={ config.facebookId }>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
 	<meta name='product:brand' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-</:Head>
+</svelte:head>
 
-<:Window bind:innerWidth='windowWidth' bind:innerHeight='windowHeight' />
+<svelte:window bind:innerWidth='windowWidth' bind:innerHeight='windowHeight' />
 
 <Layout page='home'>
-	<div slot='navigation' class='cover bg-bottom relative' style='height: {{ heroHeight }}'>
+	<div slot='navigation' class='cover bg-bottom relative' style='height: { heroHeight }'>
 		<Nav page='home' light />
 
 		<div class='bg-salty-teal white w-100 absolute bottom-0 tc pv2 ph4 pv3-ns f3 f2-ns lh-title'>
@@ -43,7 +43,7 @@
 	</div>
 
 	<div slot='content'>
-		<div class='{{ section }} flex flex-column justify-center items-center'>
+		<div class='{ section } flex flex-column justify-center items-center'>
 			<div class='f3 f2-ns f1-l i mb4'>Our Candles</div>
 			<div class='cf w-100 mw7'>
 				<div class='fl w-third'>
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 
-		<div class={{ `flex flex-column flex-row-l items-center justify-center ${section}` }}>
+		<div class={ `flex flex-column flex-row-l items-center justify-center ${section}` }>
 			<h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy'>
 				<span class='dn-l'>Coastal Candles for a Cause</span>
 				<span class='dn db-l'>Coastal Candles<br>for a Cause</span>
@@ -72,37 +72,37 @@
 			</h1>
 		</div>
 
-		<div class={{ `flex flex-column justify-center items-center ${section}` }}>
+		<div class={ `flex flex-column justify-center items-center ${section}` }>
 			<div class='f3 f2-ns f1-l i mb2'>How to Buy</div>
 
 			<div class='cf mw8'>
-				<div class='{{ image }} pa2 pl0'>
+				<div class='{ image } pa2 pl0'>
 					<img src='/cotton-bayou-candle.jpg' alt='cotton bayou candle' />
 				</div>
-				<div class='{{ image }} pv2 ph1'>
+				<div class='{ image } pv2 ph1'>
 					<img src='/tiki-bar-candle.jpg' alt='tiki bar candle' />
 				</div>
-				<div class='dn di-ns {{ image }} pa2 pr0'>
+				<div class='dn di-ns { image } pa2 pr0'>
 					<img src='/wooden-wick-candle.jpg' alt='wooden wick candle' />
 				</div>
 			</div>
 
-			<a class='link {{button}} mt3 mt4-l' href='/shop'>SHOP NOW</a>
+			<a class='link {button} mt3 mt4-l' href='/shop'>SHOP NOW</a>
 		</div>
 
-		<div class={{ `flex flex-column justify-center items-center ${section}` }}>
+		<div class={ `flex flex-column justify-center items-center ${section}` }>
 			<div class='f3 f2-ns f1-l i mb3'>Join the Salty Squad</div>
 			<h3 class='f5 f4-ns f3-l tc pv2 pv4-ns mw6 ph2 ph4-m'>Stay updated on the latest salty news and<br>products by joining our mailing list</h3>
-			<button class={{ button }} on:click='set({ signupOpen: true })'>NOTIFY ME</button>
+			<button class={ button } on:click='set({ signupOpen: true })'>NOTIFY ME</button>
 		</div>
 	</div>
 </Layout>
 
-{{ #if signupOpen }}
+{ #if signupOpen }
 <Modal on:close='set({ signupOpen: false })' title='Mailing List'>
 	<SignupForm />
 </Modal>
-{{ /if }}
+{ /if }
 
 <style>
 	div[slot='navigation'] {
@@ -129,7 +129,7 @@
 			SignupForm
 		},
 		computed: {
-			heroHeight: (windowHeight, windowWidth) => {
+			heroHeight: ({ windowHeight, windowWidth }) => {
 				let height = 3 / 4 * windowWidth;
 
 				if (height > windowHeight * 0.6) {

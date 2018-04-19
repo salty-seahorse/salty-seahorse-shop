@@ -2,20 +2,20 @@
     <slot name='placeholder'></slot>
 </button>
 
-{{#if open}}
-<Modal :title on:close='set({ open: false })'>
+{ #if open }
+<Modal {title} on:close='set({ open: false })'>
     <ul class='list pa0 ma0 ph2'>
-        {{#each options as option, i}}
+        { #each options as option, i }
         <li class='f3 white pv3 bb b--white-50' on:click='select(i)'>
-            <div>{{ option.label }}</div>
-            {{ #if option.sublabel }}
-            <div class='f5 mt2 lh-title'>{{ option.sublabel }}</div>
-            {{ /if }}
+            <div>{ option.label }</div>
+            { #if option.sublabel }
+            <div class='f5 mt2 lh-title'>{ option.sublabel }</div>
+            { /if }
         </li>
-        {{/each}}
+        { /each }
     </ul>
 </Modal>
-{{/if}}
+{ /if }
 
 <style>
     li:last-of-type {
@@ -41,13 +41,13 @@
         },
 
         computed: {
-            value: (options, selectedIndex) => options[selectedIndex] && options[selectedIndex].value
+            value: ({ options, selectedIndex }) => options[selectedIndex] && options[selectedIndex].value
         },
 
         methods: {
             select(index) {
                 this.set({ selectedIndex: index, open: false });
-                this.fire('change', this.get('value'));
+                this.fire('change', this.get().value);
             }
         }
     }

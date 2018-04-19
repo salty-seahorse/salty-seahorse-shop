@@ -1,34 +1,34 @@
-<:Head>
+<svelte:head>
 <!-- COMMON TAGS -->
     <meta charset='utf-8'>
     <title>Salty Seahorse Shop | Coastal Candles for a Cause</title>
     <!-- Search Engine -->
     <meta name='description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta name='image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta name='image' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
     <!-- Schema.org for Google -->
     <meta itemprop='name' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta itemprop='description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta itemprop='image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta itemprop='image' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
     <!-- Twitter -->
     <meta name='twitter:card' content='summary'>
     <meta name='twitter:title' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta name='twitter:description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta name='twitter:site' content='@{{ config.twitterId }}'>
-    <meta name='twitter:creator' content='@{{ config.twitterId }}'>
-    <meta name='twitter:image:src' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
+    <meta name='twitter:site' content='@{ config.twitterId }'>
+    <meta name='twitter:creator' content='@{ config.twitterId }'>
+    <meta name='twitter:image:src' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name='og:title' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
     <meta name='og:description' content='Hand-crafted, locally-inspired soy candles made exclusively from repurposed glass in Orange Beach, AL'>
-    <meta name='og:image' content='{{ ENV.baseUrl }}tiki-bar-candle.jpg'>
-    <meta name='og:url' content='{{ ENV.baseUrl }}shop'>
+    <meta name='og:image' content='{ ENV.baseUrl }tiki-bar-candle.jpg'>
+    <meta name='og:url' content='{ ENV.baseUrl }shop'>
     <meta name='og:site_name' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-    <meta name='fb:admins' content={{ config.facebookId }}>
+    <meta name='fb:admins' content={ config.facebookId }>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
     <meta name='product:availability' content='preorder'>
     <meta name='product:brand' content='Salty Seahorse Shop | Coastal Candles for a Cause'>
-</:Head>
+</svelte:head>
 
 <Layout>
     <div slot='navigation'>
@@ -36,7 +36,7 @@
     </div>
 
     <div slot='content' class='db center'>
-        <div class={{ `flex flex-column items-center justify-center ${section}` }}>
+        <div class={ `flex flex-column items-center justify-center ${section}` }>
             <h1 class='f3 f2-ns f1-l tc i w-100 w-third-l lh-copy'>
                 Variety is the Spice of Life
             </h1>
@@ -46,15 +46,15 @@
         </div>
 
         <ol class='cf pa0 ma0 mw8 db center mt4 list' vocab='http://schema.org/' typeof='ItemList' >
-            {{ #each items as item, i }}
+            { #each items as item, i }
             <li property='itemListElement' typeof='ListItem'>
-                <a class='link fl w-100 w-50-ns ph3 pv3 pv4-ns' href={{ `/shop/${item.slug}` }} typeof='Product' property='url'>
-                    <img class='max-h5 max-h6-l db center' src='/{{ item.metadata.image }}' alt='{{ item.metadata.title }}' property='image' />
+                <a class='link fl w-100 w-50-ns ph3 pv3 pv4-ns' href={ `/shop/${item.slug}` } typeof='Product' property='url'>
+                    <img class='max-h5 max-h6-l db center' src='/{ item.metadata.image }' alt='{ item.metadata.title }' property='image' />
                     <div class='tc lh-copy mw5 mw6-l ph4-l db center pt2'>
-                        <span class='f4 f3-ns b' property='name'>{{ item.metadata.title }}</span>
+                        <span class='f4 f3-ns b' property='name'>{ item.metadata.title }</span>
                         <br >
-                        <span class='f5 f4-ns' property='description'>{{ item.metadata.description }}</span>
-                        {{ #each optionsForItem(item) as option }}
+                        <span class='f5 f4-ns' property='description'>{ item.metadata.description }</span>
+                        { #each optionsForItem(item) as option }
                         <span property='offers' typeof='Offer'>
                             <meta property='priceCurrency' content='USD' />
                             <span property='seller' typeof='Organization'>
@@ -64,18 +64,18 @@
                             <link property='availability' href='http://schema.org/InStock' />
                             <meta property='price' href='option.price' />
                         </span>
-                        {{ /each }}
+                        { /each }
                     </div>
 
-                    <meta property='description' content={{ item.metadata.description }} />
+                    <meta property='description' content={ item.metadata.description } />
                     <span property='brand' typeof='Organization'>
                         <meta property='name' content='Salty Seahorse Shop' />
                     </span>
                 </a>
 
-                <meta property='position' content={{ i + 1 }}>
+                <meta property='position' content={ i + 1 }>
             </li>
-            {{ /each }}
+            { /each }
         </ol>
     </div>
 </Layout>

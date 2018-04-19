@@ -1,10 +1,10 @@
 <div class='flex flex-row justify-center items-center'>
-    {{#if title}}
-    <label class='f4 mr3 b'>{{ title }}</label>
-    {{/if}}
-    <button on:click='decrement()' disabled={{ !canDecrement }} class={{ buttonStyle(!canDecrement) }}>-</button>
-    <label class='mh2 w2 tc f3 b'>{{ value }}</label>
-    <button on:click='increment()' disabled={{ !canIncrement }} class={{ buttonStyle(!canIncrement) }}>+</button>
+    { #if title }
+    <label class='f4 mr3 b'>{ title }</label>
+    { /if }
+    <button on:click='decrement()' disabled={ !canDecrement } class={ buttonStyle(!canDecrement) }>-</button>
+    <label class='mh2 w2 tc f3 b'>{ value }</label>
+    <button on:click='increment()' disabled={ !canIncrement } class={ buttonStyle(!canIncrement) }>+</button>
 </div>
 
 <script>
@@ -20,8 +20,8 @@
         },
 
         computed: {
-            canIncrement: (value, max, step) => value + step <= max,
-            canDecrement: (value, min, step) => value - step >= min
+            canIncrement: ({ value, max, step }) => value + step <= max,
+            canDecrement: ({ value, min, step }) => value - step >= min
         },
 
         methods: {
@@ -31,6 +31,9 @@
                 if (!canIncrement) {
                     return;
                 }
+
+                console.log('value', typeof(value));
+                console.log('step', typeof(step));
 
                 this.set({ value: value + step });
             },

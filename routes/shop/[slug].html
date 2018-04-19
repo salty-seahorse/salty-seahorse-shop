@@ -1,36 +1,36 @@
-<:Head>
+<svelte:head>
     <!-- COMMON TAGS -->
     <meta charset='utf-8'>
-    <title>{{ item.metadata.title }}</title>
+    <title>{ item.metadata.title }</title>
     <!-- Search Engine -->
-    <meta name='description' content={{ item.metadata.description }}>
-    <meta name='image' content='{{ ENV.baseUrl }}{{ selected.image }}'>
+    <meta name='description' content={ item.metadata.description }>
+    <meta name='image' content='{ ENV.baseUrl }{ selected.image }'>
     <!-- Schema.org for Google -->
-    <meta itemprop='name' content={{ item.metadata.title }}>
-    <meta itemprop='description' content={{ item.metadata.description }}>
-    <meta itemprop='image' content='{{ ENV.baseUrl }}{{ selected.image }}'>
+    <meta itemprop='name' content={ item.metadata.title }>
+    <meta itemprop='description' content={ item.metadata.description }>
+    <meta itemprop='image' content='{ ENV.baseUrl }{ selected.image }'>
     <!-- Twitter -->
     <meta name='twitter:card' content='summary'>
-    <meta name='twitter:title' content={{ item.metadata.title }}>
-    <meta name='twitter:description' content={{ item.metadata.description }}>
-    <meta name='twitter:site' content='@{{ config.twitterId }}'>
-    <meta name='twitter:creator' content='@{{ config.twitterId }}'>
-    <meta name='twitter:image:src' content='{{ ENV.baseUrl }}{{ selected.image }}'>
+    <meta name='twitter:title' content={ item.metadata.title }>
+    <meta name='twitter:description' content={ item.metadata.description }>
+    <meta name='twitter:site' content='@{ config.twitterId }'>
+    <meta name='twitter:creator' content='@{ config.twitterId }'>
+    <meta name='twitter:image:src' content='{ ENV.baseUrl }{ selected.image }'>
     <!-- Twitter - Product (e-commerce) -->
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-    <meta name='og:title' content={{ item.metadata.title }}>
-    <meta name='og:description' content={{ item.metadata.description }}>
-    <meta name='og:image' content='{{ ENV.baseUrl }}{{ selected.image }}'>
-    <meta name='og:url' content='{{ ENV.baseUrl }}shop/{{ item.slug }}'>
-    <meta name='og:site_name' content={{ item.metadata.title }}>
-    <meta name='fb:admins' content={{ config.facebookId }}>
+    <meta name='og:title' content={ item.metadata.title }>
+    <meta name='og:description' content={ item.metadata.description }>
+    <meta name='og:image' content='{ ENV.baseUrl }{ selected.image }'>
+    <meta name='og:url' content='{ ENV.baseUrl }shop/{ item.slug }'>
+    <meta name='og:site_name' content={ item.metadata.title }>
+    <meta name='fb:admins' content={ config.facebookId }>
     <meta name='og:type' content='product'>
     <!-- Open Graph - Product (e-commerce) -->
     <meta name='product:availability' content='preorder'>
     <meta name='product:price:currency' content='USD'>
-    <meta name='product:price:amount' content={{ selected.price }}>
+    <meta name='product:price:amount' content={ selected.price }>
     <meta name='product:brand' content='Salty Seahorse Shop'>
-</:Head>
+</svelte:head>
 
 <Layout>
     <div slot='navigation'>
@@ -38,7 +38,7 @@
     </div>
 
     <div slot='content' class='mh3 pv4'>
-        <Breadcrumb items={{ breadcrumbs }}/>
+        <Breadcrumb items={ breadcrumbs }/>
 
         <div class='cf mt3' vocab='http://schema.org/' typeof='Product'>
             <span property='brand' typeof='Organization'>
@@ -46,28 +46,28 @@
             </span>
 
             <div class='fl dn db-ns w-third pr2'>
-                <img class='db center mw6 w-100' src='/{{ selected.image }}' alt={{ item.metadata.title }} property='image' />
+                <img class='db center mw6 w-100' src='/{ selected.image }' alt={ item.metadata.title } property='image' />
             </div>
 
             <div class='fl w-100 w-two-thirds-ns pl4-ns pl6-l'>
-                <div class='f1 tc tl-ns mb4' property='name'>{{ item.metadata.title }}</div>
+                <div class='f1 tc tl-ns mb4' property='name'>{ item.metadata.title }</div>
 
-                <img class='mb4 mw5 db center dn-ns' src='/{{ selected.image }}' alt={{ item.metadata.title }} />
+                <img class='mb4 mw5 db center dn-ns' src='/{ selected.image }' alt={ item.metadata.title } />
 
-                {{ #each optionsForItem(item) as option }}
+                { #each optionsForItem(item) as option }
                 <div class='mw5-ns db center ml0-ns mb3'>
-                    <Select options={{ valuesForOption(option) }} title='{{ option.title }}:' on:change='onselect(option.slug, event)'>
+                    <Select options={ valuesForOption(option) } title='{ option.title }:' on:change='onselect(option.slug, event)'>
                         <div slot='placeholder' class='flex flex-row justify-center items-center'>
                             <div class='tl' style='flex: 1;'>
-                                <span class='lh-copy'>{{ option.title }}:</span>
+                                <span class='lh-copy'>{ option.title }:</span>
                                 <br>
-                                <span class='b'>{{ option.values[selectedOptions[option.slug]].label }}</span>
+                                <span class='b'>{ option.values[selectedOptions[option.slug]].label }</span>
                             </div>
                             <div>&gt;</div>
                         </div>
                     </Select>
                 </div>
-                {{ /each }}
+                { /each }
 
                 <div class='mw5-ns db center ml0-ns flex flex-row justify-between items-center mt3 mt4-ns'>
                     <div class='f2 gray' property='offers' typeof='Offer'>
@@ -77,38 +77,38 @@
                         </span>
                         <link property='itemCondition' href='http://schema.org/NewCondition' />
                         <link property='availability' href='http://schema.org/InStock' />
-                        $<span property='price'>{{ selected.price }}</span>
+                        $<span property='price'>{ selected.price }</span>
                     </div>
                 </div>
 
                 <div class='f4 f3-ns mt1'>$5 flat shipping on all orders!</div>
                 <div class='f5 f4-ns mt2'>*Please allow 3-5 business days for processing</div>
 
-                {{ #if item.metadata.cartStackable }}
+                { #if item.metadata.cartStackable }
                 <div class='mw5-ns db center ml0-ns mt3'>
-                    <Stepper bind:value='quantity' min=1 max={{ item.metadata.maxQuantity }} step=1 title='Quantity:'/>
+                    <Stepper bind:value='quantity' min={ 1 } max={ item.metadata.maxQuantity } step={ 1 } title='Quantity:'/>
                 </div>
-                {{ /if }}
+                { /if }
 
                 <button class='w-100 mw5-ns snipcart-add-item open-sans f5 f4-ns dark-gray bg-transparent hover-bg-salty-teal hover-b--salty-teal hover-white ba bw1 b--dark-gray bg-animate br2 ma0 mt4 ph4 pv2'
-                    data-item-name={{ selected.title }}
-                    data-item-price={{ selected.price }}
-                    data-item-id={{ selected.slug }}
-                    data-item-description={{ itemDescription }}
-                    data-item-metadata={{ itemDescription }}
-                    data-item-url={{ `/shop/${item.slug}` }}
-                    data-item-image='{{ ENV.baseUrl }}{{ selected.image }}'
-                    data-item-quantity={{ quantity }}
-                    data-item-max-quantity={{ item.metadata.maxQuantity }}
-                    data-item-stackable={{ item.metadata.cartStackable }}
+                    data-item-name={ selected.title }
+                    data-item-price={ selected.price }
+                    data-item-id={ selected.slug }
+                    data-item-description={ itemDescription }
+                    data-item-metadata={ itemDescription }
+                    data-item-url={ `/shop/${item.slug}` }
+                    data-item-image='{ ENV.baseUrl }{ selected.image }'
+                    data-item-quantity={ quantity }
+                    data-item-max-quantity={ item.metadata.maxQuantity }
+                    data-item-stackable={ item.metadata.cartStackable }
                 >
                     ADD TO CART
                 </button>
 
-                <div class='f4 f3-ns b mt4 mw6' property='description'>{{ item.metadata.description }}</div>
+                <div class='f4 f3-ns b mt4 mw6' property='description'>{ item.metadata.description }</div>
 
                 <div class='f5 f4-ns fw1 mt4 lh-copy'>
-                    {{{ formattedHtml }}}
+                    {@html formattedHtml }
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
         },
 
         computed: {
-            breadcrumbs: item => item ? [{
+            breadcrumbs: ({ item }) => item ? [{
                 href: '/shop',
                 name: 'Shop'
             }, {
@@ -151,7 +151,7 @@
                 name: item.metadata.title
             }] : [],
 
-            selected: (item, selectedOptions) => {
+            selected: ({ item, selectedOptions }) => {
                 const options = Object.keys(selectedOptions)
                     .reduce((acc, key) => {
                         const value = item.metadata.options[key].values[selectedOptions[key]];
@@ -161,7 +161,7 @@
                 return Object.assign(item.metadata, options);
             },
 
-            itemDescription: (item, selectedOptions) => {
+            itemDescription: ({ item, selectedOptions }) => {
                 return Object.keys(selectedOptions).map((key) => {
                     const option = item.metadata.options[key];
                     const value = option.values[selectedOptions[key]];
@@ -170,7 +170,7 @@
                 }).join(', ');
             },
 
-            formattedHtml: (item, selected) => item.html
+            formattedHtml: ({ item, selected }) => item.html
                 .replace('%size%', selected.size)
                 .replace('%burnTime%', selected.burnTime)
         },
