@@ -1,9 +1,9 @@
 ---
 sortOrder: 1
-title: Mother's Day Candle Flight
-slug: mothers-day-flight
+title: Candle Flight
+slug: candle-flight
 price: 25
-description: These candles make a great gift for Mom! This candle flight includes three 4 oz. mini candles - you choose the scents.
+description: This candle flight includes three 4 oz. mini candles - you choose the scents.
 image: flight.jpg
 maxQuantity: 25
 cartStackable: false
