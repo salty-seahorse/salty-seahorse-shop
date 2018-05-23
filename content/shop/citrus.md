@@ -8,15 +8,16 @@ cartStackable: true
 options:
     size:
         title: Size
-        default: citrus-12oz
+        default: citrus-16oz
         values:
             citrus-12oz:
                 slug: citrus-12oz
-                label: 12 oz. - $25
+                label: 12 oz. - $25 (Out of Stock)
                 size: 12 oz.
                 price: 25
                 burnTime: 110
                 image: citrus-12oz.jpg
+                outOfStock: true
             citrus-16oz:
                 slug: citrus-16oz
                 label: 16 oz. - $30
